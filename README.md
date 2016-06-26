@@ -111,9 +111,9 @@ NavBar and Menu have different options
 Using custom theme is very simple:
 
  * copy one of the included themes
- * change the selector team name to your new theme E.G: `.hoverLakeBright_isOpened` to `.YouThemeName_isOpened`
+ * change the selector theme name to your new theme E.G: `.hoverLakeBright_isOpened` to `.YouThemeName_isOpened`
  * set theme option to your theme name
- * include that file somewhere in your site
+ * include the theme file somewhere in your site
 
 And your done.
 
