@@ -68,7 +68,7 @@ NavBar and Menu have different options
  * menus {Array}  - An array of instantiated menus.
  * theme {String}  - Name of the theme you want to use.
  * spring {Object}  - An object with details on how menus will open E.G: `spring={{ opened:100, closed:0, style: function(x) { return { height: `${x}%`} } }}`
- * toggle {Object}  - An object that determines how will the toggle button will look
+ * toggle {Object}  - An object that determines how will the toggle button look
  * openOnHover {Boolean}  - Determines if menus will open or close on hover(for mobiles false is recommended).
 
  toggle object example:
@@ -86,7 +86,7 @@ NavBar and Menu have different options
       },
     };
  ```
- 
+
 ###Menu
 
     * optionObject{Object}
