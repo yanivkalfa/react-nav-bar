@@ -4,7 +4,7 @@ import { createClassName } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
 import Menu from './../menu/Menu';
 
-import './../../themes/';
+import './../../lib/themes';
 
 export default class NavBar extends Component {
   constructor(props) {
