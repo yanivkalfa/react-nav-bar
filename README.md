@@ -65,24 +65,46 @@ NavBar and Menu have different options
 
 ###NavBar
 
+ * menus {Array}  - An array of instantiated menus.
+ * theme {String}  - Name of the theme you want to use.
+ * spring {Object}  - An object with details on how menus will open E.G: `spring={{ opened:100, closed:0, style: function(x) { return { height: `${x}%`} } }}`
+ * toggle {Object}  - An object that determines how will the toggle button will look
+ * openOnHover {Boolean}  - Determines if menus will open or close on hover(for mobiles false is recommended).
+
+ toggle object example:
+ ```javascript
+    var toggle = {
+      display:false,
+      default:'pied-piper',
+      parent: {
+        opened: 'bars',
+        closed: 'pied-piper'
+      },
+      child: {
+        opened: 'bus',
+        closed: 'coffee'
+      },
+    };
+ ```
+ 
 ###Menu
 
- * optionObject{Object}
- * -   path {String}  - route path as defined for the rout
- * -   label {String} - what will be the menu's text
- * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
- *       - If String or Undefined will check if that string is in pathname to determine if is active.
- *       - If Boolean will do nothing and use the given value.
- *       - If Function will invoke the function and assign the returned value to active.
- * -   action {Function} - Will get invoked when a menu item is clicked and prevent default
- * -   opened {Boolean} - Flag to indicate if submenu is opened or closed.
- * -   permission {Function|Boolean} - determines whether or not to show this menu - can be use for access control.
- *       - If Function Will invoke the function and assign the returned value to visible
- *       - If Boolean will be assigned to visible
- * -   subMenus {Array} - an array of submenus with the same signature.
- * -   className {String} - class name to be used for that menu(in the li)
- * -   icon {String} - specify an icon for menu.
- * location{Object} - react-router location object.
+    * optionObject{Object}
+    * -   path {String}  - route path as defined for the rout
+    * -   label {String} - what will be the menu'ss text
+    * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
+    *       - If String or Undefined will check if that string is in pathname to determine if is active.
+    *       - If Boolean will do nothing and use the given value.
+    *       - If Function will invoke the function and assign the returned value to active.
+    * -   action {Function} - Will get invoked when a menu item is clicked and prevent default
+    * -   opened {Boolean} - Flag to indicate if submenu is opened or closed.
+    * -   permission {Function|Boolean} - determines whether or not to show this menu - can be use for access control.
+    *       - If Function Will invoke the function and assign the returned value to visible
+    *       - If Boolean will be assigned to visible
+    * -   subMenus {Array} - an array of submenus with the same signature.
+    * -   className {String} - class name to be used for that menu(in the li)
+    * -   icon {String} - specify an icon for menu.
+    * location{Object} - react-router location object.
 
 
 ##Themes:
