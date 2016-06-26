@@ -67,22 +67,22 @@ NavBar and Menu have different options
 
 ###Menu
 
-    * optionObject{Object}
-    * -   path {String}  - route path as defined for the rout
-    * -   label {String} - what will be the menu's text
-    * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
-    *       - If String or Undefined will check if that string is in pathname to determine if is active.
-    *       - If Boolean will do nothing and use the given value.
-    *       - If Function will invoke the function and assign the returned value to active.
-    * -   action {Function} - Will get invoked when a menu item is clicked and prevent default
-    * -   opened {Boolean} - Flag to indicate if submenu is opened or closed.
-    * -   permission {Function|Boolean} - determines whether or not to show this menu - can be use for access control.
-    *       - If Function Will invoke the function and assign the returned value to visible
-    *       - If Boolean will be assigned to visible
-    * -   subMenus {Array} - an array of submenus with the same signature.
-    * -   className {String} - class name to be used for that menu(in the li)
-    * -   icon {String} - specify an icon for menu.
-    * location{Object} - react-router location object.
+ * optionObject{Object}
+ * -   path {String}  - route path as defined for the rout
+ * -   label {String} - what will be the menu's text
+ * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
+ *       - If String or Undefined will check if that string is in pathname to determine if is active.
+ *       - If Boolean will do nothing and use the given value.
+ *       - If Function will invoke the function and assign the returned value to active.
+ * -   action {Function} - Will get invoked when a menu item is clicked and prevent default
+ * -   opened {Boolean} - Flag to indicate if submenu is opened or closed.
+ * -   permission {Function|Boolean} - determines whether or not to show this menu - can be use for access control.
+ *       - If Function Will invoke the function and assign the returned value to visible
+ *       - If Boolean will be assigned to visible
+ * -   subMenus {Array} - an array of submenus with the same signature.
+ * -   className {String} - class name to be used for that menu(in the li)
+ * -   icon {String} - specify an icon for menu.
+ * location{Object} - react-router location object.
 
 
 ##Themes:
