@@ -1,0 +1,157 @@
+
+
+.mobileHoverLakeDark_isClosed {
+    display:none;
+}
+
+.mobileHoverLakeDark_isOpened { }
+
+.mobileHoverLakeDark_toggle-button {
+    margin-left:5px;
+    float:right;
+    margin-top:2px;
+}
+
+.mobileHoverLakeDark_nav-ul {
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+.mobileHoverLakeDark_parent-li .mobileHoverLakeDark_nav-ul {
+    margin-left:10px;
+}
+
+.mobileHoverLakeDark_nav-li > .mobileHoverLakeDark_nav-label {
+    padding: 3px 10px;
+    margin:0 -10px 0 -20px;
+}
+
+.mobileHoverLakeDark_parent-li > .mobileHoverLakeDark_nav-label {
+    border-bottom: 1px solid #717171;
+    margin:0 -10px;
+
+}
+
+.mobileHoverLakeDark_child-li > .mobileHoverLakeDark_nav-label {
+    border-bottom: 1px solid #717171;
+}
+
+.mobileHoverLakeDark_nav-content {
+    overflow: hidden;
+    padding:0 10px;
+    border:1px solid #5f5858;
+    border-top:none;
+    border-bottom:none;
+}
+
+.mobileHoverLakeDark_content-child {
+    overflow: hidden;
+    padding:0 10px;
+    border:1px solid #5f5858;
+    border-top:none;
+    border-bottom:none;
+    margin-left:-10px;
+}
+
+
+.mobileHoverLakeDark_nav-ul li{
+    white-space:nowrap;
+}
+
+.mobileHoverLakeDark_nav-ul li a{
+    text-decoration: none;
+}
+
+.mobileHoverLakeDark_nav-ul li a:hover{
+    text-decoration: none;
+}
+
+.mobileHoverLakeDark_nav-ul li a:visited{
+    text-decoration: none;
+}
+
+.mobileHoverLakeDark_parent-li > .mobileHoverLakeDark_nav-label {
+    color: #2d2230;
+    font-size:16px;
+    font-weight: bold;
+}
+
+.mobileHoverLakeDark_parent-li > .mobileHoverLakeDark_nav-label a {
+    color: #2d2230;
+}
+
+.mobileHoverLakeDark_parent-li > .mobileHoverLakeDark_active,
+.mobileHoverLakeDark_parent-li > .mobileHoverLakeDark_active a {
+    color: #806029;
+    font-size:16px;
+    font-weight: bold;
+}
+
+
+
+.mobileHoverLakeDark_child-li > .mobileHoverLakeDark_nav-label {
+    color: #c4c4c4;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.mobileHoverLakeDark_child-li > .mobileHoverLakeDark_nav-label a {
+    color: #c4c4c4;
+}
+
+.mobileHoverLakeDark_child-li > .mobileHoverLakeDark_active,
+.mobileHoverLakeDark_child-li > .mobileHoverLakeDark_active a {
+    color: #ffd181;
+    font-size:14px;
+    font-weight: bold;
+}
+
+
+
+.mobileHoverLakeDark_isOpened > .mobileHoverLakeDark_label-parent  {
+    border-top:3px solid #598fd5;
+    box-shadow: 0 0.2em 0.2em #505050;
+    background:grey;
+    color: #e3e3e3;
+    padding-top: 0;
+}
+
+.mobileHoverLakeDark_isOpened > .mobileHoverLakeDark_label-parent a{
+    color: #fcfcfc;
+}
+
+.mobileHoverLakeDark_isOpened > .mobileHoverLakeDark_label-parent:hover {
+    color: #fcfcfc;
+}
+
+.mobileHoverLakeDark_isOpened > .mobileHoverLakeDark_label-parent:hover a {
+    color: #fcfcfc;
+}
+
+.mobileHoverLakeDark_isOpened > .mobileHoverLakeDark_label-child {
+    border-top: 3px solid #598fd5;
+    box-shadow: 0 0.2em 0.2em #505050;
+    color: #f4f4f4;
+    background: grey;
+    padding-top: 0;
+}
+
+.mobileHoverLakeDark_isOpened > .mobileHoverLakeDark_label-child a{
+    color: #f4f4f4;
+}
+
+.mobileHoverLakeDark_isOpened > .mobileHoverLakeDark_label-child:hover {
+    color: #f4f4f4;
+}
+
+.mobileHoverLakeDark_isOpened > .mobileHoverLakeDark_label-child:hover a {
+    color: #f4f4f4;
+}
+
+.mobileHoverLakeDark_child-li .mobileHoverLakeDark_menu-icon {
+    margin-right:5px;
+}
+.mobileHoverLakeDark_parent-li .mobileHoverLakeDark_menu-icon {
+    margin-right:5px;
+}

@@ -1,0 +1,43 @@
+
+.default_isClosed{
+    display:none;
+}
+
+.default_toggle-button {
+    margin-left:5px;
+}
+
+.default_nav-ul {
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+.default_parent-li {
+    float:left;
+    padding:3px 10px;
+}
+
+.default_child-li {
+    position:relative;
+    white-space:nowrap;
+}
+
+.default_nav-label {
+    padding:3px 10px;
+    position:relative;
+}
+
+.default_label-child {}
+
+.default_nav-content {
+    margin-top:-1px;
+    position:absolute;
+    border:1px solid black;
+    background: #ededed;
+}
+
+.default_content-child {
+    left:100%;
+    top:0;
+}

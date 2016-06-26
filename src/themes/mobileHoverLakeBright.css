@@ -1,0 +1,141 @@
+
+
+.mobileHoverLakeBright_isClosed {
+    display:none;
+}
+
+.mobileHoverLakeBright_isOpened { }
+
+.mobileHoverLakeBright_toggle-button {
+    margin-left:5px;
+    float:right;
+    margin-top:2px;
+}
+
+.mobileHoverLakeBright_nav-ul {
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+.mobileHoverLakeBright_parent-li .mobileHoverLakeBright_nav-ul {
+    margin-left:10px;
+}
+
+.mobileHoverLakeBright_nav-li > .mobileHoverLakeBright_nav-label {
+    padding: 3px 10px;
+    margin:0 -10px 0 -20px;
+}
+
+.mobileHoverLakeBright_parent-li > .mobileHoverLakeBright_nav-label {
+    border-bottom: 1px solid #ccc;
+    margin:0 -10px;
+
+}
+
+.mobileHoverLakeBright_child-li > .mobileHoverLakeBright_nav-label {
+    border-bottom: 1px solid #ccc;
+}
+
+.mobileHoverLakeBright_nav-content {
+    overflow: hidden;
+    padding:0 10px;
+    border:1px solid #ccc;
+    border-top:none;
+    border-bottom:none;
+}
+
+.mobileHoverLakeBright_content-child {
+    overflow: hidden;
+    padding:0 10px;
+    border:1px solid #ccc;
+    border-top:none;
+    border-bottom:none;
+    margin-left:-10px;
+}
+
+
+.mobileHoverLakeBright_nav-ul li{
+    white-space:nowrap;
+}
+
+.mobileHoverLakeBright_nav-ul li a{
+    text-decoration: none;
+}
+
+.mobileHoverLakeBright_nav-ul li a:hover{
+    text-decoration: none;
+}
+
+.mobileHoverLakeBright_nav-ul li a:visited{
+    text-decoration: none;
+}
+
+.mobileHoverLakeBright_parent-li > .mobileHoverLakeBright_nav-label {
+    color: #333;
+    font-size:16px;
+    font-weight: bold;
+}
+
+.mobileHoverLakeBright_parent-li > .mobileHoverLakeBright_nav-label a {
+    color: #333;
+}
+
+.mobileHoverLakeBright_parent-li > .mobileHoverLakeBright_active,
+.mobileHoverLakeBright_parent-li > .mobileHoverLakeBright_active a {
+    color: #3880ba;
+    font-size:16px;
+    font-weight: bold;
+}
+
+
+
+.mobileHoverLakeBright_child-li > .mobileHoverLakeBright_nav-label {
+    color: #4c4c4c;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.mobileHoverLakeBright_child-li > .mobileHoverLakeBright_nav-label a {
+    color: #4c4c4c;
+}
+
+.mobileHoverLakeBright_child-li > .mobileHoverLakeBright_active,
+.mobileHoverLakeBright_child-li > .mobileHoverLakeBright_active a {
+    color: #095dba;
+    font-size:14px;
+    font-weight: bold;
+}
+
+
+
+.mobileHoverLakeBright_isOpened > .mobileHoverLakeBright_label-parent  {
+    border-top:3px solid #0654ba;
+    box-shadow: 0 0.2em 0.2em #bdbdbd;
+    background:#efefef;
+    color: #0654ba;
+    padding-top: 0;
+}
+
+.mobileHoverLakeBright_isOpened > .mobileHoverLakeBright_label-parent a{
+    color: #0654ba;
+}
+
+.mobileHoverLakeBright_isOpened > .mobileHoverLakeBright_label-child {
+    border-top: 3px solid #1467ba;
+    box-shadow: 0 0.2em 0.2em #bdbdbd;
+    color: #1467ba;
+    background: #efefef;
+    padding-top: 0;
+}
+
+.mobileHoverLakeBright_isOpened > .mobileHoverLakeBright_label-child a{
+    color: #1467ba;
+}
+
+.mobileHoverLakeBright_child-li .mobileHoverLakeBright_menu-icon {
+    margin-right:5px;
+}
+.mobileHoverLakeBright_parent-li .mobileHoverLakeBright_menu-icon {
+    margin-right:5px;
+}

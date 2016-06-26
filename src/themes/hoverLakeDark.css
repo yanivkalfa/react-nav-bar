@@ -1,0 +1,174 @@
+
+.hoverLakeDark_isClosed {
+    display:none;
+}
+
+.hoverLakeDark_isOpened { }
+
+.hoverLakeDark_toggle-button {
+    margin-left:5px;
+}
+
+.hoverLakeDark_nav-ul {
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+.hoverLakeDark_nav-ul li a{
+    text-decoration: none;
+}
+
+.hoverLakeDark_nav-ul li a:hover{
+    text-decoration: none;
+}
+
+.hoverLakeDark_nav-ul li a:visited{
+    text-decoration: none;
+}
+
+.hoverLakeDark_parent-li {
+    float:left;
+    padding:0;
+}
+
+.hoverLakeDark_child-li {
+    position:relative;
+    white-space:nowrap;
+}
+
+.hoverLakeDark_nav-label {
+    padding:3px 10px;
+    position:relative;
+}
+
+.hoverLakeDark_parent-li > .hoverLakeDark_nav-label {
+    border-top: 3px solid transparent;
+    color: #2d2230;
+    font-size:16px;
+    font-weight: bold;
+}
+
+.hoverLakeDark_parent-li > .hoverLakeDark_nav-label:hover {
+    color: #7c7c7c;
+}
+
+.hoverLakeDark_parent-li > .hoverLakeDark_nav-label a {
+    color: #2d2230;
+}
+.hoverLakeDark_parent-li > .hoverLakeDark_nav-label:hover a {
+    color: #7c7c7c;
+}
+
+.hoverLakeDark_parent-li > .hoverLakeDark_active,
+.hoverLakeDark_parent-li > .hoverLakeDark_active a {
+    color: #806029;
+    font-size:16px;
+    font-weight: bold;
+}
+
+.hoverLakeDark_child-li > .hoverLakeDark_nav-label {
+    margin-left:-7px;
+    border-left: 3px solid transparent;
+    color: #c4c4c4;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.hoverLakeDark_child-li > .hoverLakeDark_nav-label:hover {
+    color: #f4f4f4;
+}
+
+.hoverLakeDark_child-li > .hoverLakeDark_nav-label a {
+    color: #c4c4c4;
+}
+.hoverLakeDark_child-li > .hoverLakeDark_nav-label:hover a {
+    color: #f4f4f4;
+}
+
+.hoverLakeDark_child-li > .hoverLakeDark_active,
+.hoverLakeDark_child-li > .hoverLakeDark_active a {
+    color: #ffd181;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.hoverLakeDark_label-parent {
+    border:1px solid transparent;
+    z-index:6;
+}
+
+.hoverLakeDark_isOpened > .hoverLakeDark_label-parent  {
+    border:1px solid #5f5858;
+    border-top:3px solid #598fd5;
+    border-bottom:1px solid transparent;
+    box-shadow: 0.2em 0 0 #8d8d8d;
+    background:grey;
+    color: #e3e3e3;
+    z-index:6;
+}
+
+.hoverLakeDark_isOpened > .hoverLakeDark_label-parent a{
+    color: #fcfcfc;
+}
+
+.hoverLakeDark_isOpened > .hoverLakeDark_label-parent:hover {
+    color: #fcfcfc;
+}
+
+.hoverLakeDark_isOpened > .hoverLakeDark_label-parent:hover a {
+    color: #fcfcfc;
+}
+
+
+.hoverLakeDark_label-child {
+    z-index:8;
+    border:1px solid grey;
+}
+
+.hoverLakeDark_isOpened > .hoverLakeDark_label-child {
+    border:1px solid #5f5858;
+    border-right: 1px solid transparent;
+    border-left: 3px solid #598fd5;
+    box-shadow: 0 0.2em 0 #636363;
+    color: #f4f4f4;
+    background: grey;
+}
+
+.hoverLakeDark_isOpened > .hoverLakeDark_label-child a{
+    color: #f4f4f4;
+}
+
+.hoverLakeDark_isOpened > .hoverLakeDark_label-child:hover {
+    color: #f4f4f4;
+}
+
+.hoverLakeDark_isOpened > .hoverLakeDark_label-child:hover a {
+    color: #f4f4f4;
+}
+
+
+
+.hoverLakeDark_nav-content {
+    padding:3px 10px;
+    border:1px solid #5f5858;
+    background:grey;
+    margin-top:-1px;
+    position:absolute;
+    box-shadow: 0.2em 0.2em 0.2em #8d8d8d;
+    z-index:5;
+}
+
+.hoverLakeDark_content-child {
+    left:100%;
+    top:1px;
+    margin-left:-2px;
+    z-index:7
+}
+
+.hoverLakeDark_child-li .hoverLakeDark_menu-icon {
+    margin-right:5px;
+}
+.hoverLakeDark_parent-li .hoverLakeDark_menu-icon {
+    margin-right:5px;
+}

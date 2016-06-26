@@ -1,0 +1,177 @@
+
+.hoverLakeDarkRound_isClosed {
+    display:none;
+}
+
+.hoverLakeDarkRound_isOpened { }
+
+.hoverLakeDarkRound_toggle-button {
+    margin-left:5px;
+}
+
+.hoverLakeDarkRound_nav-ul {
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+.hoverLakeDarkRound_nav-ul li a{
+    text-decoration: none;
+}
+
+.hoverLakeDarkRound_nav-ul li a:hover{
+    text-decoration: none;
+}
+
+.hoverLakeDarkRound_nav-ul li a:visited{
+    text-decoration: none;
+}
+
+.hoverLakeDarkRound_parent-li {
+    float:left;
+    padding:0;
+}
+
+.hoverLakeDarkRound_child-li {
+    position:relative;
+    white-space:nowrap;
+}
+
+.hoverLakeDarkRound_nav-label {
+    padding:3px 10px;
+    position:relative;
+}
+
+.hoverLakeDarkRound_parent-li > .hoverLakeDarkRound_nav-label {
+    border-top: 3px solid transparent;
+    color: #2d2230;
+    font-size:16px;
+    font-weight: bold;
+}
+
+.hoverLakeDarkRound_parent-li > .hoverLakeDarkRound_nav-label:hover {
+    color: #7c7c7c;
+}
+
+.hoverLakeDarkRound_parent-li > .hoverLakeDarkRound_nav-label a {
+    color: #2d2230;
+}
+.hoverLakeDarkRound_parent-li > .hoverLakeDarkRound_nav-label:hover a {
+    color: #7c7c7c;
+}
+
+.hoverLakeDarkRound_parent-li > .hoverLakeDarkRound_active,
+.hoverLakeDarkRound_parent-li > .hoverLakeDarkRound_active a {
+    color: #806029;
+    font-size:16px;
+    font-weight: bold;
+}
+
+.hoverLakeDarkRound_child-li > .hoverLakeDarkRound_nav-label {
+    margin-left:-7px;
+    border-left: 3px solid transparent;
+    color: #c4c4c4;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.hoverLakeDarkRound_child-li > .hoverLakeDarkRound_nav-label:hover {
+    color: #f4f4f4;
+}
+
+.hoverLakeDarkRound_child-li > .hoverLakeDarkRound_nav-label a {
+    color: #c4c4c4;
+}
+.hoverLakeDarkRound_child-li > .hoverLakeDarkRound_nav-label:hover a {
+    color: #f4f4f4;
+}
+
+.hoverLakeDarkRound_child-li > .hoverLakeDarkRound_active,
+.hoverLakeDarkRound_child-li > .hoverLakeDarkRound_active a {
+    color: #ffd181;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.hoverLakeDarkRound_label-parent {
+    border:1px solid transparent;
+    z-index:6;
+}
+
+.hoverLakeDarkRound_isOpened > .hoverLakeDarkRound_label-parent  {
+    border:1px solid #5f5858;
+    border-top:3px solid #598fd5;
+    border-bottom:1px solid transparent;
+    border-radius: 7px 7px 0 0;
+    box-shadow: 0.2em 0 0 #8d8d8d;
+    background:grey;
+    color: #e3e3e3;
+    z-index:6;
+}
+
+.hoverLakeDarkRound_isOpened > .hoverLakeDarkRound_label-parent a{
+    color: #fcfcfc;
+}
+
+.hoverLakeDarkRound_isOpened > .hoverLakeDarkRound_label-parent:hover {
+    color: #fcfcfc;
+}
+
+.hoverLakeDarkRound_isOpened > .hoverLakeDarkRound_label-parent:hover a {
+    color: #fcfcfc;
+}
+
+
+.hoverLakeDarkRound_label-child {
+    z-index:8;
+    border:1px solid grey;
+}
+
+.hoverLakeDarkRound_isOpened > .hoverLakeDarkRound_label-child {
+    border:1px solid #5f5858;
+    border-right: 1px solid transparent;
+    border-left: 3px solid #598fd5;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 0.2em 0 #636363;
+    color: #f4f4f4;
+    background: grey;
+}
+
+.hoverLakeDarkRound_isOpened > .hoverLakeDarkRound_label-child a{
+    color: #f4f4f4;
+}
+
+.hoverLakeDarkRound_isOpened > .hoverLakeDarkRound_label-child:hover {
+    color: #f4f4f4;
+}
+
+.hoverLakeDarkRound_isOpened > .hoverLakeDarkRound_label-child:hover a {
+    color: #f4f4f4;
+}
+
+
+
+.hoverLakeDarkRound_nav-content {
+    padding:3px 10px;
+    border:1px solid #5f5858;
+    border-radius: 0 5px 5px 5px;
+    background:grey;
+    margin-top:-1px;
+    position:absolute;
+    box-shadow: 0.2em 0.2em 0.2em #8d8d8d;
+    z-index:5;
+}
+
+.hoverLakeDarkRound_content-child {
+    left:100%;
+    top:1px;
+    margin-left:-2px;
+    z-index:7
+}
+
+.hoverLakeDarkRound_child-li .hoverLakeDarkRound_menu-icon {
+    margin-right:5px;
+}
+.hoverLakeDarkRound_parent-li .hoverLakeDarkRound_menu-icon {
+    margin-right:5px;
+}
