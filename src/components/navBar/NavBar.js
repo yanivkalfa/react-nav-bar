@@ -29,6 +29,7 @@ export default class NavBar extends Component {
         />
       }
       let children = this.renderMenus(menu.subMenus, index);
+      console.log('children', children);
       return <Menu
         menu={menu}
         key={index}
