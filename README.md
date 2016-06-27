@@ -31,7 +31,7 @@ var menus = [
       React.createClass({ render: function() { return <li>can do that TOO</li>; } }),
       { path:'menu9', label:'Menu 9'}
     ]},
-    { path:'menu10', label:'Menu 10', icon:'bars'}
+    { path:'menu10', label: <div> You can do that too</div>, icon:'bars'}
   ]}
 ]
 
@@ -48,7 +48,7 @@ var menus = [
       React.createClass({ render: function() { return <li>can do that TOO</li>; } }),
       new Menu({ path:'menu9', label:'Menu 9'}, location)
     ]}, location),
-    new Menu({ path:'menu10', label:'Menu 10', icon:'bars'}, location)
+    new Menu({ path:'menu10', label:<div> You can do that too</div>, icon:'bars'}, location)
   ]}, location)
 ]
 
