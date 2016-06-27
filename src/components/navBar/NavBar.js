@@ -29,7 +29,7 @@ export default class NavBar extends Component {
         />
       }
       let children = this.renderMenus(menu.subMenus, index);
-      console.log('children', children);
+
       return <Menu
         menu={menu}
         key={index}
@@ -47,7 +47,6 @@ export default class NavBar extends Component {
 
   render() {
     let { menus, theme } = this.props;
-    console.log('menus', menus);
     theme = theme || DEFAULT_NAME;
     const menusMarkup = this.renderMenus(menus);
     return (

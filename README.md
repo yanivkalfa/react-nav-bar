@@ -18,15 +18,17 @@ var NavBar = reactNavBar.NavBar;
 var Menu = reactNavBar.Menu;
 
 // Define your menu:
+// Menu can be any valid component form within react
+// if they are plan objects they need to be instantiated
 var menus = [
   { path:'menu1', label:'Menu 1', icon:'bell'},
-  { path:'menu2', label:'Menu 2'},
+  <div>jsx element</div>,
   { path:'menu3', label:'Menu 3', icon:'bars', subMenus: [
     { path:'menu4', label:'Menu 4'},
     { path:'menu5', label:'Menu 5', subMenus: [
       { path:'menu6', label:'Menu 6' },
       { path:'menu7', label:'Menu 7'},
-      { path:'menu8', label:'Menu 8'},
+      React.createClass({ render: function() { return <li>can do that TOO</li>; } }),
       { path:'menu9', label:'Menu 9'}
     ]},
     { path:'menu10', label:'Menu 10', icon:'bars'}
@@ -37,13 +39,13 @@ var menus = [
 var location = react-router-location(this.props.location) // react-router location
 var menus = [
   new Menu({ path:'menu1', label:'Menu 1', icon:'bell'}, location),
-  new Menu({ path:'menu2', label:'Menu 2'}, location),
+  <div>jsx element</div>,
   new Menu({ path:'menu3', label:'Menu 3', icon:'bars', subMenus: [
     new Menu({ path:'menu4', label:'Menu 4'}, location),
     new Menu({ path:'menu5', label:'Menu 5', subMenus: [
       new Menu({ path:'menu6', label:'Menu 6'}, location),
       new Menu({ path:'menu7', label:'Menu 7'}, location),
-      new Menu({ path:'menu8', label:'Menu 8'}, location),
+      React.createClass({ render: function() { return <li>can do that TOO</li>; } }),
       new Menu({ path:'menu9', label:'Menu 9'}, location)
     ]}, location),
     new Menu({ path:'menu10', label:'Menu 10', icon:'bars'}, location)
@@ -65,7 +67,7 @@ NavBar and Menu have different options
 
 ###NavBar
 
- * menus {Array}  - An array of instantiated menus.
+ * menus {Array}  - An array of instantiated menus, .
  * theme {String}  - Name of the theme you want to use.
  * spring {Object}  - An object with details on how menus will open E.G: `spring={{ opened:100, closed:0, style: function(x) { return { height: `${x}%`} } }}`
  * toggle {Object}  - An object that determines how will the toggle button look
