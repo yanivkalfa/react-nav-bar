@@ -12,7 +12,7 @@ export default class NavBar extends Component {
   }
 
   renderMenus(menus, parentIndex){
-    return  menus.filter((menu) => menu.visible).map((menu, index) => {
+    return  menus.filter((menu) => menu.visible || !isMenuObject(menu)).map((menu, index) => {
 
       // if this menu is a simple react component dont change it
       if(!isMenuObject(menu)) return menu;
