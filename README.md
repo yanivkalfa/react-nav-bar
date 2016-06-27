@@ -3,6 +3,14 @@ React Navigation Bar
 
 Can be used to create highly customizable navigation bar for your react project.
 
+##Examples:
+
+###Full size:
+![alt tag](http://url/to/img.png)
+
+###Mobile size
+![alt tag](http://url/to/img.png)
+
 ##Installation
 
 ```javascript
@@ -73,6 +81,7 @@ NavBar and Menu have different options
  * toggle {Object}  - An object that determines how will the toggle button look
  * openOnHover {Boolean}  - Determines if menus will open or close on hover(for mobiles false is recommended).
 
+// icons used are font-awesome icons so: use https://github.com/danawoodman/react-fontawesome for icons reference.
  toggle object example:
  ```javascript
     var toggle = {
@@ -92,8 +101,8 @@ NavBar and Menu have different options
 ###Menu
 
     * optionObject{Object}
-    * -   path {String}  - route path as defined for the rout
-    * -   label {String} - what will be the menu'ss text
+    * -   path {String}  - route to redirect on click.
+    * -   label {String|component} - what will be the menu's text Or component instead.
     * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
     *       - If String or Undefined will check if that string is in pathname to determine if is active.
     *       - If Boolean will do nothing and use the given value.
