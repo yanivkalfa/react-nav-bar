@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { springShape, toggleShape } from './../../lib/menuShapes';
-import { createClassName, instanceOf } from './../../lib/utils';
+import { createClassName, isMenuObject } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
 import Menu from './../menu/Menu';
 
@@ -15,7 +15,7 @@ export default class NavBar extends Component {
     return  menus.filter((menu) => menu.visible).map((menu, index) => {
 
       // if this menu is a simple react component dont change it
-      if(instanceOf(menu)) return menu;
+      if(!isMenuObject(menu)) return menu;
 
       if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
         return <Menu
