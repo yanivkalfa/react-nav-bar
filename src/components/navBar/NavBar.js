@@ -46,6 +46,7 @@ export default class NavBar extends Component {
 
   render() {
     let { menus, theme } = this.props;
+    console.log('menus', menus);
     theme = theme || DEFAULT_NAME;
     const menusMarkup = this.renderMenus(menus);
     return (
