@@ -6,10 +6,10 @@ Can be used to create highly customizable navigation bar for your react project.
 ##Examples:
 
 ###Full size:
-![alt tag](http://url/to/img.png)
+![full size](https://raw.githubusercontent.com/yanivkalfa/react-nav-bar/master/assets/full-size-menu.png)
 
 ###Mobile size
-![alt tag](http://url/to/img.png)
+![Mobile size](https://raw.githubusercontent.com/yanivkalfa/react-nav-bar/master/assets/mobile-size-menu.png)
 
 ##Installation
 
