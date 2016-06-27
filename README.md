@@ -75,7 +75,7 @@ NavBar and Menu have different options
 
 ###NavBar
 
- * menus {Array}  - An array of instantiated menus, .
+ * menus {Array} - required  - An array of instantiated menus  .
  * theme {String}  - Name of the theme you want to use.
  * spring {Object}  - An object with details on how menus will open E.G: `spring={{ opened:100, closed:0, style: function(x) { return { height: `${x}%`} } }}`
  * toggle {Object}  - An object that determines how will the toggle button look
@@ -101,7 +101,7 @@ NavBar and Menu have different options
 ###Menu
 
     * optionObject{Object}
-    * -   path {String}  - route to redirect on click.
+    * -   path {String} - required  - route to redirect on click.
     * -   label {String|component} - what will be the menu's text Or component instead.
     * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
     *       - If String or Undefined will check if that string is in pathname to determine if is active.
