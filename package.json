@@ -1,6 +1,6 @@
 {
   "name": "react-nav-bar",
-  "version": "0.0.8",
+  "version": "0.0.81",
   "description": "Simple yet very coustomizable navigation bar for react",
   "main": "./lib/index.js",
   "scripts": {
@@ -20,7 +20,8 @@
   "files": [
     "lib",
     "src",
-    "themes"
+    "themes",
+    "assets"
   ],
   "keywords": [
     "react",
