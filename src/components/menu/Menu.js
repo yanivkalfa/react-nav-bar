@@ -101,6 +101,28 @@ export default class Menu extends Component {
     return { displayToggle, labelClassName, contentClassName, liClassName, chevron, active };
   }
 
+  renderMenuIcon(){
+    const { menu } = this.props;
+    const { theme } = this.state;
+    return (menu.icon)
+      ? <FontAwesome className={ createClassName(theme, 'menu-icon') } name={menu.icon} />
+      : false;
+  }
+
+  renderLabel(){
+    const { menu } = this.props;
+    return ( _.isFunction(menu.label) || _.isObject(menu.label))
+      ? menu.label
+      : <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>;
+  }
+
+  renderToggleButton({ displayToggle, chevron }){
+    const { theme } = this.state;
+    return (displayToggle)
+      ? <FontAwesome className={ createClassName(theme, 'toggle-button') } name={chevron} onClick={ ()=>{ this.toggleMenu() } }/>
+      : false;
+  }
+
   render() {
     const { menu } = this.props;
     const { theme, openOnHover } = this.state;
@@ -114,21 +136,9 @@ export default class Menu extends Component {
             onMouseEnter={ ()=> { if ( openOnHover )  this.toggleMenu(true) } }
             onMouseLeave={ ()=> { if ( openOnHover )  this.toggleMenu(false) } }>
           <div className={labelClassName}>
-            {
-              (menu.icon)
-                ? <FontAwesome className={ createClassName(theme, 'menu-icon') } name={menu.icon} />
-                : false
-            }
-            {
-              ( _.isFunction(menu.label) || _.isObject(menu.label))
-                ? menu.label
-                : <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>
-            }
-            {
-              (displayToggle)
-                ? <FontAwesome className={ createClassName(theme, 'toggle-button') } name={chevron} onClick={ ()=>{ this.toggleMenu() } }/>
-                : false
-            }
+            { this.renderMenuIcon() }
+            { this.renderLabel() }
+            { this.renderToggleButton({ displayToggle, chevron })}
           </div>
           {
             (isSpringObj(springOpts))
@@ -142,16 +152,8 @@ export default class Menu extends Component {
     return (
       <li className={liClassName + ' '+ menu.className}>
         <div className={createClassName(theme, [ 'nav-label', active ])}>
-          {
-            (menu.icon)
-              ? <FontAwesome className={ createClassName(theme, 'menu-icon') } name={menu.icon} />
-              : false
-          }
-          {
-            ( _.isFunction(menu.label) || _.isObject(menu.label))
-              ? menu.label
-              : <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>
-          }
+          { this.renderMenuIcon() }
+          { this.renderLabel() }
         </div>
       </li>
     );
