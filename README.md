@@ -1,7 +1,7 @@
 React Navigation Bar
 =========================
 
-Can be used to create highly customizable navigation bar for your react project.
+Can be used to create customizable navigation bar for your react project.
 
 ##Examples:
 
@@ -85,8 +85,8 @@ NavBar and Menu have different options
  toggle object example:
  ```javascript
     var toggle = {
-      display:false,
-      default:'pied-piper',
+      display: false,
+      default: 'pied-piper',
       parent: {
         opened: 'bars',
         closed: 'pied-piper'
