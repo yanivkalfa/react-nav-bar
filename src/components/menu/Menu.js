@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 import FontAwesome from 'react-fontawesome';
@@ -118,7 +119,11 @@ export default class Menu extends Component {
                 ? <FontAwesome className={ createClassName(theme, 'menu-icon') } name={menu.icon} />
                 : false
             }
-            <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>
+            {
+              ( _.isFunction(menu.label) || _.isObject(menu.label))
+                ? menu.label
+                : <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>
+            }
             {
               (displayToggle)
                 ? <FontAwesome className={ createClassName(theme, 'toggle-button') } name={chevron} onClick={ ()=>{ this.toggleMenu() } }/>
@@ -142,7 +147,11 @@ export default class Menu extends Component {
               ? <FontAwesome className={ createClassName(theme, 'menu-icon') } name={menu.icon} />
               : false
           }
-          <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>
+          {
+            ( _.isFunction(menu.label) || _.isObject(menu.label))
+              ? menu.label
+              : <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>
+          }
         </div>
       </li>
     );
