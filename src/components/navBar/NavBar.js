@@ -15,7 +15,10 @@ export default class NavBar extends Component {
     return  menus.filter((menu) => menu.visible || !isMenuObject(menu)).map((menu, index) => {
 
       // if this menu is a simple react component dont change it
-      if(!isMenuObject(menu)) return  React.createElement(menu, { key: index });
+      if(!isMenuObject(menu)) return  React.createClass({ render() {
+        return <menu/>
+      }});
+      //React.createElement(menu, { key: index });
 
       if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
         return <Menu
