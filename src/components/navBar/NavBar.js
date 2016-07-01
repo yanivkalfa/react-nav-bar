@@ -17,9 +17,7 @@ export default class NavBar extends Component {
       // if this menu is a simple react component dont change it
       if(!isMenuObject(menu)) {
         const menuComponent = createClass({ render() { return menu } });
-        console.log(menuComponent);
         return createElement(menuComponent, { key: index });
-
       }
 
       if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
