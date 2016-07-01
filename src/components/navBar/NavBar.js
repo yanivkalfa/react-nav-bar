@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, createClass, createElement } from 'react';
 import { springShape, toggleShape } from './../../lib/menuShapes';
 import { createClassName, isMenuObject } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
@@ -15,12 +15,12 @@ export default class NavBar extends Component {
     return  menus.filter((menu) => menu.visible || !isMenuObject(menu)).map((menu, index) => {
 
       // if this menu is a simple react component dont change it
-      if(!isMenuObject(menu)) return React.createClass({
-        render() {
-          return menu
-        }
-      });
-      //React.createElement(menu, { key: index });
+      if(!isMenuObject(menu)) {
+        const menuComponent = createClass({ render() { return menu } });
+        console.log(menuComponent);
+        return createElement(menuComponent, { key: index });
+
+      }
 
       if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
         return <Menu
