@@ -19,7 +19,7 @@ function createMenus(menus = [], location, parent) {
     // has no submenus so creating menu and setting parent active if i am active.
     if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
       let newMenu = new Menu(menu, location);
-      if( newMenu.active && parent) parent.active = true;
+      //if( newMenu.active && parent) parent.active = true;
       return newMenu;
     }
 
@@ -38,6 +38,7 @@ function createMenus(menus = [], location, parent) {
      * ]}
      *
      */
+    /*
     if(!parent) {
       _.forEach(menu.subMenus, (subMenu)=> {
         if( subMenu.active) {
@@ -45,7 +46,7 @@ function createMenus(menus = [], location, parent) {
           return false;
         }
       });
-    }
+    }*/
 
     return new Menu(menu, location);
   });

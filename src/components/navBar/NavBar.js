@@ -11,7 +11,7 @@ export default class NavBar extends Component {
     super(props);
   }
 
-  renderMenus(menus, parentIndex){
+  renderMenus(menus, parentIndex, parent){
     return  menus.filter((menu) => menu.visible || !isMenuObject(menu)).map((menu, index) => {
 
       // if this menu is a simple react component dont change it
@@ -21,6 +21,7 @@ export default class NavBar extends Component {
       }
 
       if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
+        if( menu.active && parent) parent.active = true;
         return <Menu
           menu={menu}
           key={index}
@@ -32,6 +33,28 @@ export default class NavBar extends Component {
         />
       }
       let children = this.renderMenus(menu.subMenus, index);
+
+      /**
+       * because top parent doesnt know if a children of a children is active we check the top parent children
+       * in case of
+       *
+       * { paren, submenus: [
+       *  {child},
+       *  {child, submenuds:[
+       *    {child} ---------------- if this menu is active top parent wont know about it until recursion is over
+       *  ]},
+       *
+       * ]}
+       *
+       */
+      if(!parent) {
+        _.forEach(menu.subMenus, (subMenu)=> {
+          if( subMenu.active) {
+            menu.active = true;
+            return false;
+          }
+        });
+      }
 
       return <Menu
         menu={menu}
