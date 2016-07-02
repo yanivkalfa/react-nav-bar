@@ -54,11 +54,12 @@ export default class Menu {
         this.active = this.active();
         break;
       case 'undefined' || 'string':
-        let pathname = location.pathname ? location.pathname.split('/') : [] ;
-        console.log('location.pathname', location.pathname, location);
-        console.log('this.path', this.path);
-        const path = (this.active || this.path).split('/');
-        this.active =  getLast(path) === getLast(pathname); //pathname.indexOf(getLast(path)) > -1;
+        //location.pathname
+        //let pathname = location.pathname ? location.pathname.split('/') : [] ;
+        //console.log('location.pathname', location.pathname, location);
+        //console.log('this.path', this.path);
+        const path = this.active || this.path;//(this.active || this.path).split('/');
+        this.active =  location.pathname == path; //getLast(path) === getLast(pathname); //pathname.indexOf(getLast(path)) > -1;
         break;
     }
   }
