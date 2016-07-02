@@ -55,6 +55,8 @@ export default class Menu {
         break;
       case 'undefined' || 'string':
         let pathname = location.pathname ? location.pathname.split('/') : [] ;
+        console.log('pathname', pathname);
+        console.log('this.path', this.path);
         const path = (this.active || this.path).split('/');
         this.active =  getLast(path) === getLast(pathname); //pathname.indexOf(getLast(path)) > -1;
         break;
