@@ -19,7 +19,16 @@ export default class Menu extends Component {
         ? this.props.openOnHover
         : true
     });
+
+    this.isVisible(this.props.menu);
   }
+
+  static isVisible(menu){
+    let visible = typeof menu.permission === 'function' ? menu.permission() : menu.permission;
+    console.log('visible',visible);
+    return visible;
+  }
+
   toggleMenu(opened){
     this.setState({
       opened: typeof opened!== 'undefined' ? opened : !this.state.opened
@@ -127,6 +136,9 @@ export default class Menu extends Component {
 
   render() {
     const { menu } = this.props;
+
+    if (! menu.visible ) return false;
+
     const { theme, openOnHover } = this.state;
     const { displayToggle, labelClassName, contentClassName, liClassName, chevron, active } = this.prepareForRender();
 
@@ -172,4 +184,14 @@ Menu.propTypes = {
   index: PropTypes.number,
   parentIndex: PropTypes.number,
   openOnHover: PropTypes.bool
+};
+
+Menu.defaultProps = {
+  menu: {
+    opened: false,
+    permission: true,
+    visible: false,
+    subMenus: [],
+    icon: false
+  }
 };

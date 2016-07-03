@@ -1,7 +1,7 @@
 import React, { Component, PropTypes, createClass, createElement } from 'react';
 import _ from 'lodash';
 import { springShape, toggleShape } from './../../lib/menuShapes';
-import { createClassName, isMenuObject, checkActive, isVisible, prepareMenus } from './../../lib/utils';
+import { createClassName, isMenuObject, checkActive } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
 import Menu from './../menu/Menu';
 
@@ -13,12 +13,28 @@ export default class NavBar extends Component {
 
     console.log('this.props.theme', this.props.theme);
     console.log('this.props.menus - before', this.props.menus);
-    prepareMenus({ menus: this.props.menus, location: this.props.location });
+    this.prepareMenus({ menus: this.props.menus, location: this.props.location });
     console.log('this.props.menus  - after', this.props.menus);
   }
 
+  prepareMenus({ menus, location }) {
+    return menus.map((menu)=> {
+
+      if( !isMenuObject(menu) ) return menu;
+
+      if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
+        menu.active = checkActive({ menu, location });
+        return menu;
+      }
+
+      this.prepareMenus({ menus: menu.subMenus, location });
+      menu.active = checkActive({ menu, location });
+      return menu;
+    });
+  }
+
   renderMenus(menus, parentIndex, parent){
-    return  menus.filter((menu) => isVisible( menu ) || !isMenuObject(menu) ).map((menu, index) => {
+    return  menus.map((menu, index) => {
 
       // if this menu is a simple react component dont change it
       if( !isMenuObject(menu) ) {
