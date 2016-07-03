@@ -1,18 +1,18 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash';
 
-export function isSpringObj(spring){
+export function isSpringObj(spring) {
   return spring && _.isEmpty(spring.opened) && _.isEmpty(spring.closed) &&  spring.style && _.isFunction(spring.style)
 }
 
-export function createClassName({ theme, classNames }){
+export function createClassName({ theme, classNames }) {
   classNames = _.isArray(classNames) ? classNames : [classNames];
   return classNames.filter((className) => !!className ).map((className) => {
     return `${theme}_${className}`;
   }).join(' ');
 }
 
-export function isMenuObject(componenet){
+export function isMenuObject(componenet) {
   return typeof componenet === 'object' && componenet.path
 }
 
@@ -21,7 +21,7 @@ export function isMenuObject(componenet){
  * @param {Object} menu
  * @param {Object} location
  */
-export function checkActive({ menu, location }){
+export function checkActive({ menu, location }) {
   switch( typeof menu.active ) {
     case 'boolean':
       return menu.active;
@@ -39,8 +39,14 @@ export function checkActive({ menu, location }){
 /**
  * check permission and set visible accordingly.
  */
-export function isVisible(menu){
+export function isVisible(menu) {
   let visible = typeof menu.permission === 'function' ? menu.permission() : menu.permission;
   console.log('visible',visible);
   return visible;
+}
+
+export function prepareMenu ({ menu, location }) {
+  const defMenu = { opened: false, permission: true, visible: false, subMenus: [], icon: false };
+  const active = checkActive({ menu, location });
+  return Object.assign({ active }, defMenu, menu);
 }

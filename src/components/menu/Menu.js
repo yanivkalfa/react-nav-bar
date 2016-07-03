@@ -185,13 +185,3 @@ Menu.propTypes = {
   parentIndex: PropTypes.number,
   openOnHover: PropTypes.bool
 };
-
-Menu.defaultProps = {
-  menu: {
-    opened: false,
-    permission: true,
-    visible: false,
-    subMenus: [],
-    icon: false
-  }
-};

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes, createClass, createElement } from 'react';
 import _ from 'lodash';
 import { springShape, toggleShape } from './../../lib/menuShapes';
-import { createClassName, isMenuObject, checkActive } from './../../lib/utils';
+import { createClassName, isMenuObject, checkActive, prepareMenu } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
 import Menu from './../menu/Menu';
 
@@ -20,13 +20,11 @@ export default class NavBar extends Component {
       if( !isMenuObject(menu) ) return menu;
 
       if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
-        menu.active = checkActive({ menu, location });
-        return menu;
+        return prepareMenu({ menu, location });
       }
 
       this.prepareMenus({ menus: menu.subMenus, location });
-      menu.active = checkActive({ menu, location });
-      return menu;
+      return prepareMenu({ menu, location });
     });
   }
 
