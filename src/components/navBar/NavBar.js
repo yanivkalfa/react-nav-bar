@@ -11,10 +11,7 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props);
 
-    console.log('this.props.theme', this.props.theme);
-    console.log('this.props.menus - before', this.props.menus);
     this.prepareMenus({ menus: this.props.menus, location: this.props.location });
-    console.log('this.props.menus  - after', this.props.menus);
   }
 
   prepareMenus({ menus, location }) {
@@ -94,11 +91,11 @@ export default class NavBar extends Component {
   }
 
   render() {
-    return false;
 
     let { menus, theme } = this.props;
     theme = theme || DEFAULT_NAME;
     const menusMarkup = this.renderMenus(menus);
+    console.log('menusMarkup', menusMarkup);
     return (
       <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>{menusMarkup}</ul>
     );
