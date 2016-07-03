@@ -40,7 +40,9 @@ export function checkActive({ menu, location }){
  * check permission and set visible accordingly.
  */
 export function isVisible(menu){
-  return (typeof menu.permission === 'function') ? menu.permission() : menu.permission;
+  let visible = typeof menu.permission === 'function' ? menu.permission() : menu.permission;
+  console.log('visible',visible);
+  return visible;
 }
 
 export function prepareMenus({ menus, location }) {

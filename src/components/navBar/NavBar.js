@@ -11,7 +11,10 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props);
 
+    console.log('this.props.theme', this.props.theme);
+    console.log('this.props.menus - before', this.props.menus);
     prepareMenus({ menus: this.props.menus, location: this.props.location });
+    console.log('this.props.menus  - after', this.props.menus);
   }
 
   renderMenus(menus, parentIndex, parent){

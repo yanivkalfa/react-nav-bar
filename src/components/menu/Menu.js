@@ -9,10 +9,12 @@ import { springShape, toggleShape, menu } from './../../lib/menuShapes';
 
 export default class Menu extends Component {
   constructor(props) {
-    super(props);//theme, classNames
+    super(props);
+
+    console.log('this.props.menu.path', this.props.menu.path);
     this.state = Object.assign({
       theme: this.props.theme || DEFAULT_NAME,
-      opened: this.props.opened,
+      opened: this.props.menu.opened,
       openOnHover: typeof this.props.openOnHover === 'boolean'
         ? this.props.openOnHover
         : true
