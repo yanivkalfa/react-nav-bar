@@ -5,11 +5,11 @@ import FontAwesome from 'react-fontawesome';
 import { Motion, spring } from 'react-motion';
 import { isSpringObj, createClassName } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
-import { springShape, toggleShape } from './../../lib/menuShapes';
+import { springShape, toggleShape, menu } from './../../lib/menuShapes';
 
 export default class Menu extends Component {
   constructor(props) {
-    super(props);
+    super(props);//theme, classNames
     this.state = Object.assign({
       theme: this.props.theme || DEFAULT_NAME,
       opened: this.props.opened,
@@ -31,8 +31,8 @@ export default class Menu extends Component {
     return (
       <Motion style={{x: spring(this.state.opened ? springOpts.opened :  springOpts.closed) }}>
         {({x}) =>
-          <div className={contentClassName + ( !this.state.opened && springOpts.closed == x ? ' '+ createClassName(theme, 'isClosed') : ' '+ createClassName(theme, 'isOpened'))} style={springOpts.style(x)}>
-            <ul className={ createClassName(theme, 'nav-ul') }>
+          <div className={contentClassName + ( !this.state.opened && springOpts.closed == x ? ' '+ createClassName({ theme, classNames: 'isClosed' })  : ' '+ createClassName({ theme, classNames: 'isOpened' }) )} style={springOpts.style(x)}>
+            <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>
               {this.props.children}
             </ul>
           </div>
@@ -45,8 +45,8 @@ export default class Menu extends Component {
     const { theme } = this.state;
 
     return (
-      <div className={contentClassName + ( this.state.opened ? ' '+ createClassName(theme, 'isOpened') : ' '+ createClassName(theme, 'isClosed'))}>
-        <ul className={ createClassName(theme, 'nav-ul') }>
+      <div className={contentClassName + ( this.state.opened ? ' '+ createClassName({ theme, classNames: 'isOpened' })  : ' '+ createClassName({ theme, classNames: 'isClosed' }) )}>
+        <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>
           {this.props.children}
         </ul>
       </div>
@@ -83,16 +83,16 @@ export default class Menu extends Component {
 
     // if has parent index - this is a child menu
     if (parentIndex) {
-      labelClassName = createClassName(theme, [ 'nav-label', 'label-child', active ]);
-      contentClassName = createClassName(theme, [ 'nav-content', 'content-child']);
-      liClassName = createClassName(theme, [ 'nav-li', 'child-li' ]);
+      labelClassName = createClassName({ theme, classNames: [ 'nav-label', 'label-child', active ] }) ;
+      contentClassName = createClassName({ theme, classNames: [ 'nav-content', 'content-child'] }) ;
+      liClassName = createClassName({ theme, classNames: [ 'nav-li', 'child-li' ] }) ;
       chevron = this.state.opened
         ? toggleChild.opened || toggleDefault || 'chevron-right'
         : toggleChild.closed || toggleDefault || 'chevron-left';
     } else {
-      labelClassName = createClassName(theme, [ 'nav-label', 'label-parent', active ]);
-      contentClassName = createClassName(theme, [ 'nav-content' ]);
-      liClassName = createClassName(theme, [ 'nav-li', 'parent-li' ]);
+      labelClassName = createClassName({ theme, classNames: [ 'nav-label', 'label-parent', active ] }) ;
+      contentClassName = createClassName({ theme, classNames: [ 'nav-content' ] }) ;
+      liClassName = createClassName({ theme, classNames: [ 'nav-li', 'parent-li' ] }) ;
       chevron = this.state.opened
         ? toggleParent.opened || toggleDefault || 'chevron-down'
         : toggleParent.closed || toggleDefault || 'chevron-up';
@@ -105,7 +105,7 @@ export default class Menu extends Component {
     const { menu } = this.props;
     const { theme } = this.state;
     return (menu.icon)
-      ? <FontAwesome className={ createClassName(theme, 'menu-icon') } name={menu.icon} />
+      ? <FontAwesome className={ createClassName({ theme, classNames: 'menu-icon' })  } name={menu.icon} />
       : false;
   }
 
@@ -119,7 +119,7 @@ export default class Menu extends Component {
   renderToggleButton({ displayToggle, chevron }){
     const { theme } = this.state;
     return (displayToggle)
-      ? <FontAwesome className={ createClassName(theme, 'toggle-button') } name={chevron} onClick={ ()=>{ this.toggleMenu() } }/>
+      ? <FontAwesome className={ createClassName({ theme, classNames: 'toggle-button' })  } name={chevron} onClick={ ()=>{ this.toggleMenu() } }/>
       : false;
   }
 
@@ -132,7 +132,7 @@ export default class Menu extends Component {
       let springOpts = this.props.spring;
 
       return (
-        <li className={liClassName + ' '+ menu.className + ( this.state.opened ? ' '+ createClassName(theme, 'isOpened') : '') }
+        <li className={liClassName + ' '+ menu.className + ( this.state.opened ? ' '+ createClassName({ theme, classNames: 'isOpened' })  : '') }
             onMouseEnter={ ()=> { if ( openOnHover )  this.toggleMenu(true) } }
             onMouseLeave={ ()=> { if ( openOnHover )  this.toggleMenu(false) } }>
           <div className={labelClassName}>
@@ -151,7 +151,7 @@ export default class Menu extends Component {
 
     return (
       <li className={liClassName + ' '+ menu.className}>
-        <div className={createClassName(theme, [ 'nav-label', active ])}>
+        <div className={createClassName({ theme, classNames: [ 'nav-label', active ] }) }>
           { this.renderMenuIcon() }
           { this.renderLabel() }
         </div>
@@ -161,7 +161,7 @@ export default class Menu extends Component {
 }
 
 Menu.propTypes = {
-  menu: PropTypes.object,
+  menu,
   spring: springShape,
   toggle: PropTypes.oneOfType([
     toggleShape,

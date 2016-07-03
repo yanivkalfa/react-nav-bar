@@ -1,3 +1,2 @@
-export createMenus from './lib/createMenus';
-export Menu from './lib/menu';
+export Menu from './../components/menu/Menu';
 export NavBar from './components/navBar/NavBar';
