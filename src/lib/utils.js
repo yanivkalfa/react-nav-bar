@@ -46,14 +46,14 @@ export function isVisible(menu){
 export function prepareMenus({ menus, location }) {
   return menus.map((menu)=> {
 
-    if(!isMenuObject(menu)) return menu;
+    if( !isMenuObject(menu) ) return menu;
 
     if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
       menu.active = checkActive({ menu, location });
       return menu;
     }
 
-    prepareMenus({ menus, location });
+    prepareMenus({ menus: menu.subMenus, location });
     menu.active = checkActive({ menu, location });
     return menu;
   });
