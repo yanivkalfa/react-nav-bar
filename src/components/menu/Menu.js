@@ -23,7 +23,7 @@ export default class Menu extends Component {
     this.isVisible(this.props.menu);
   }
 
-  static isVisible(menu){
+  isVisible(menu){
     let visible = typeof menu.permission === 'function' ? menu.permission() : menu.permission;
     console.log('visible',visible);
     return visible;
