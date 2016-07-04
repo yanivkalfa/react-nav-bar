@@ -13,19 +13,19 @@ export default class Menu extends Component {
 
     console.log('this.props.path', this.props.path);
     console.log('this.props', this.props);
-    this.state = Object.assign({
+    this.state = {
       theme: this.props.theme || DEFAULT_NAME,
-      opened: this.props.menu.opened,
+      opened: this.props.opened,
       openOnHover: typeof this.props.openOnHover === 'boolean'
         ? this.props.openOnHover
-        : true
-    });
+        : true,
+      visible: this.isVisible(this.props.permission)
+    };
 
-    this.isVisible(this.props.menu);
   }
 
-  isVisible(menu){
-    let visible = typeof menu.permission === 'function' ? menu.permission() : menu.permission;
+  isVisible(permission){
+    let visible = typeof permission === 'function' ? permission() : permission;
     console.log('visible',visible);
     return visible;
   }
@@ -72,7 +72,7 @@ export default class Menu extends Component {
   }
 
   prepareForRender(){
-    const { menu } = this.props;
+    const menu = this.props;
     const { theme } = this.state;
 
     let chevron, liClassName, labelClassName, contentClassName, displayToggle = true,
@@ -114,7 +114,7 @@ export default class Menu extends Component {
   }
 
   renderMenuIcon(){
-    const { menu } = this.props;
+    const menu = this.props;
     const { theme } = this.state;
     return (menu.icon)
       ? <FontAwesome className={ createClassName({ theme, classNames: 'menu-icon' })  } name={menu.icon} />
@@ -122,7 +122,7 @@ export default class Menu extends Component {
   }
 
   renderLabel(){
-    const { menu } = this.props;
+    const menu = this.props;
     return ( _.isFunction(menu.label) || _.isObject(menu.label))
       ? menu.label
       : <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>;
@@ -136,9 +136,9 @@ export default class Menu extends Component {
   }
 
   render() {
-    const { menu } = this.props;
+    const menu = this.props;
 
-    if (! menu.visible ) return false;
+    if ( !this.state.visible ) return false;
 
     const { theme, openOnHover } = this.state;
     const { displayToggle, labelClassName, contentClassName, liClassName, chevron, active } = this.prepareForRender();

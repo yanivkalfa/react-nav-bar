@@ -12,8 +12,7 @@ export default class NavBar extends Component {
     super(props);
 
     this.state = { menus: this.prepareMenus({ menus: this.props.menus, location: this.props.location }) };
-    console.log('this.props.menus', this.state.menus);
-
+    console.log('this.state.menus', this.state.menus);
   }
 
   prepareMenus({ menus, location }) {
@@ -113,12 +112,10 @@ export default class NavBar extends Component {
   }
 
   componentWillReceiveProps(props){
-    console.log('propsprops',props);
-
-    /*
-    this.setState({ menus: this.prepareMenus({ menus: this.props.menus, location: this.props.location }) });
-    //console.log('this.props.menus', this.state.menus);
-    */
+    if ( props.menus ) {
+      this.state = { menus: this.prepareMenus({ menus: this.props.menus, location: this.props.location }) };
+      console.log('this.state.menus', this.state.menus);
+    }
   }
 
   render() {
