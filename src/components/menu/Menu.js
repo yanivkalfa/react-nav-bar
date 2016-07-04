@@ -17,7 +17,7 @@ export default class Menu extends Component {
       openOnHover: typeof this.props.openOnHover === 'boolean'
         ? this.props.openOnHover
         : true,
-      visible: this.isVisible(this.props.permission)
+      visible: this.isVisible(this.props.permission) || true
     };
 
   }
