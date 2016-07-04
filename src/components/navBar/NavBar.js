@@ -10,8 +10,8 @@ import './../../lib/themes';
 export default class NavBar extends Component {
   constructor(props) {
     super(props);
-    throw new Error('asdfadfadfasd');
-    this.state = { menus: this.prepareMenus({ menus: this.state.menus, location: this.props.location }) };
+
+    this.state = { menus: this.prepareMenus({ menus: this.props.menus, location: this.props.location }) };
     console.log('this.props.menus', this.state.menus);
 
   }
@@ -114,7 +114,7 @@ export default class NavBar extends Component {
     console.log('propsprops',props);
 
     /*
-    this.setState({ menus: this.prepareMenus({ menus: this.state.menus, location: this.props.location }) });
+    this.setState({ menus: this.prepareMenus({ menus: this.props.menus, location: this.props.location }) });
     //console.log('this.props.menus', this.state.menus);
     */
   }
