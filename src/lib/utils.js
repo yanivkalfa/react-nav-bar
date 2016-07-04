@@ -46,7 +46,6 @@ export function isVisible(menu) {
 }
 
 export function prepareMenu ({ menu, location }) {
-  const defMenu = { opened: false, permission: true, visible: false, subMenus: [], icon: false };
   const active = checkActive({ menu, location });
-  return Object.assign({ active }, defMenu, menu);
+  return Object.assign({ active }, menu);
 }

@@ -22,11 +22,13 @@ export default class NavBar extends Component {
       if( !isMenuObject(menu) ) return menu;
 
       if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
-        return prepareMenu({ menu, location });
+        menu.active = checkActive({ menu, location });
+        return menu;
       }
 
       this.prepareMenus({ menus: menu.subMenus, location });
-      return prepareMenu({ menu, location });
+      menu.active = checkActive({ menu, location });
+      return menu;
     });
   }
 
