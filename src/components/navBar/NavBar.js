@@ -11,9 +11,12 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props);
 
-    this.prepareMenus({ menus: this.props.menus, location: this.props.location });
+    this.state = { menus: this.props.menus };
 
-    console.log('this.props.menus', this.props.menus);
+
+    this.prepareMenus({ menus: this.state.menus, location: this.props.location });
+    console.log('this.props.menus', this.state.menus);
+
   }
 
   prepareMenus({ menus, location }) {
@@ -41,15 +44,28 @@ export default class NavBar extends Component {
 
       if( !menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus) ){
         if( menu.active && parent) parent.active = true;
-        return <Menu
-          menu={menu}
-          key={index}
-          theme={this.props.theme}
-          index={index}
-          toggle={this.props.toggle}
-          parentIndex={parentIndex || 0}
-          openOnHover={this.props.openOnHover}
-        />
+
+        return createElement(Menu,
+          Object.assign(
+            {
+              opened: false,
+              permission: true,
+              visible: false,
+              subMenus: [],
+              icon: false
+            },
+            {
+              key: index,
+              theme: this.props.theme,
+              index,
+              toggle: this.props.toggle,
+              parentIndex: ( parentIndex || 0 ),
+              openOnHover: this.props.openOnHover
+            },
+            menu
+          )
+        );
+
       }
       let children = this.renderMenus(menu.subMenus, index);
 
@@ -74,27 +90,46 @@ export default class NavBar extends Component {
           }
         });
       }
-
-      return <Menu
-        menu={menu}
-        key={index}
-        theme={this.props.theme}
-        spring={ this.props.spring }
-        toggle={this.props.toggle}
-        index={index}
-        parentIndex={parentIndex || 0}
-        openOnHover={this.props.openOnHover}
-      >
-        {children}
-      </Menu>;
+      return createElement(Menu,
+        Object.assign(
+          {
+            opened: false,
+            permission: true,
+            visible: false,
+            subMenus: [],
+            icon: false
+          },
+          {
+            key: index,
+            theme: this.props.theme,
+            spring: this.props.spring,
+            toggle: this.props.toggle,
+            index,
+            parentIndex: ( parentIndex || 0 ),
+            openOnHover: this.props.openOnHover
+          },
+          menu
+        ),
+        children
+      );
     });
+  }
+
+  componentWillReceiveProps(props){
+    console.log('propsprops',props);
+
+    /*
+    this.setState({ menus: this.props.menus });
+    //this.prepareMenus({ menus: this.state.menus, location: this.props.location });
+    //console.log('this.props.menus', this.state.menus);
+    */
   }
 
   render() {
 
-    let { menus, theme } = this.props;
+    let { theme } = this.props;
     theme = theme || DEFAULT_NAME;
-    const menusMarkup = this.renderMenus(menus);
+    const menusMarkup = this.renderMenus(this.state.menus);
     console.log('menusMarkup', menusMarkup);
     return (
       <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>{menusMarkup}</ul>
@@ -114,3 +149,30 @@ NavBar.propTypes = {
   ]),
   openOnHover: PropTypes.bool
 };
+
+/*
+
+<Menu
+  menu={menu}
+  key={index}
+  theme={this.props.theme}
+  index={index}
+  toggle={this.props.toggle}
+  parentIndex={parentIndex || 0}
+  openOnHover={this.props.openOnHover}
+/>
+
+
+return <Menu
+  menu={menu}
+  key={index}
+  theme={this.props.theme}
+  spring={ this.props.spring }
+  toggle={this.props.toggle}
+  index={index}
+  parentIndex={parentIndex || 0}
+  openOnHover={this.props.openOnHover}
+>
+  {children}
+</Menu>;
+*/

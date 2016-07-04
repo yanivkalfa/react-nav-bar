@@ -5,13 +5,14 @@ import FontAwesome from 'react-fontawesome';
 import { Motion, spring } from 'react-motion';
 import { isSpringObj, createClassName } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
-import { springShape, toggleShape, menu } from './../../lib/menuShapes';
+import { springShape, toggleShape } from './../../lib/menuShapes';
 
 export default class Menu extends Component {
   constructor(props) {
     super(props);
 
-    console.log('this.props.menu.path', this.props.menu.path);
+    console.log('this.props.path', this.props.path);
+    console.log('this.props', this.props);
     this.state = Object.assign({
       theme: this.props.theme || DEFAULT_NAME,
       opened: this.props.menu.opened,
@@ -175,7 +176,6 @@ export default class Menu extends Component {
 }
 
 Menu.propTypes = {
-  menu,
   spring: springShape,
   toggle: PropTypes.oneOfType([
     toggleShape,
@@ -183,5 +183,24 @@ Menu.propTypes = {
   ]),
   index: PropTypes.number,
   parentIndex: PropTypes.number,
-  openOnHover: PropTypes.bool
+  openOnHover: PropTypes.bool,
+  path: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.string
+  ]),
+  active: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func,
+    PropTypes.string
+  ]),
+  action: PropTypes.func,
+  opened: PropTypes.bool,
+  permission: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func
+  ]),
+  subMenus: PropTypes.array,
+  className: PropTypes.string,
+  icon: PropTypes.string
 };
