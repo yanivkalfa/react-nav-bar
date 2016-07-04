@@ -114,7 +114,7 @@ export default class NavBar extends Component {
   componentWillReceiveProps(props){
     console.log('component receive props ', props);
     if ( props.menus ) {
-      console.log('reSetting state');
+      console.log('prop.menus is set going in.');
       this.setState({ menus: this.prepareMenus({ menus: props.menus, location: props.location }) });
       console.log('this.state.menus', this.state.menus);
     }
