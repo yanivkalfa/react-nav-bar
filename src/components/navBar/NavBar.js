@@ -11,7 +11,7 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { menus: this.prepareMenus({ menus: this.props.menus, location: this.props.location }) };
+    this.state = { menus: _.cloneDeep(this.prepareMenus({ menus: this.props.menus, location: this.props.location })) };
     console.log('this.state.menus', this.state.menus);
   }
 
@@ -115,7 +115,7 @@ export default class NavBar extends Component {
     console.log('component receive props ', props);
     if ( props.menus ) {
       console.log('prop.menus is set going in.');
-      this.setState({ menus: this.prepareMenus({ menus: props.menus, location: props.location }) });
+      this.setState({ menus: _.cloneDeep(this.prepareMenus({ menus: props.menus, location: props.location })) });
       console.log('this.state.menus', this.state.menus);
     }
   }
