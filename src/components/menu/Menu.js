@@ -11,8 +11,6 @@ export default class Menu extends Component {
   constructor(props) {
     super(props);
 
-    console.log('this.props.path', this.props.path);
-    console.log('this.props', this.props);
     this.state = {
       theme: this.props.theme || DEFAULT_NAME,
       opened: this.props.opened,
@@ -26,7 +24,6 @@ export default class Menu extends Component {
 
   isVisible(permission){
     let visible = typeof permission === 'function' ? permission() : permission;
-    console.log('visible',visible);
     return visible;
   }
 

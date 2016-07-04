@@ -35,17 +35,3 @@ export function checkActive({ menu, location }) {
       break;
   }
 }
-
-/**
- * check permission and set visible accordingly.
- */
-export function isVisible(menu) {
-  let visible = typeof menu.permission === 'function' ? menu.permission() : menu.permission;
-  console.log('visible',visible);
-  return visible;
-}
-
-export function prepareMenu ({ menu, location }) {
-  const active = checkActive({ menu, location });
-  return Object.assign({ active }, menu);
-}

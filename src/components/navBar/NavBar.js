@@ -112,6 +112,7 @@ export default class NavBar extends Component {
   }
 
   componentWillReceiveProps(props){
+    console.log('component receive props ', props);
     if ( props.menus ) {
       this.state = { menus: this.prepareMenus({ menus: this.props.menus, location: this.props.location }) };
       console.log('this.state.menus', this.state.menus);
@@ -119,7 +120,7 @@ export default class NavBar extends Component {
   }
 
   render() {
-
+    console.log('in render');
     let { theme } = this.props;
     theme = theme || DEFAULT_NAME;
     const menusMarkup = this.renderMenus(this.state.menus);
