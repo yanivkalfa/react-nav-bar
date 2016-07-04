@@ -181,6 +181,25 @@ Menu.propTypes = {
   index: PropTypes.number,
   parentIndex: PropTypes.number,
   openOnHover: PropTypes.bool,
+
+
+  /**
+   *
+   * -   path {String} - required  - route to redirect on click.
+   * -   label {String|component} - what will be the menu's text Or component instead.
+   * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
+   *       - If String or Undefined will check if that string is in pathname to determine if is active.
+   *       - If Boolean will do nothing and use the given value.
+   *       - If Function will invoke the function and assign the returned value to active.
+   * -   action {Function} - Will get invoked when a menu item is clicked and prevent default
+   * -   opened {Boolean} - Flag to indicate if submenu is opened or closed.
+   * -   permission {Function|Boolean} - determines whether or not to show this menu - can be use for access control.
+   *       - If Function Will invoke the function and assign the returned value to visible
+   *       - If Boolean will be assigned to visible
+   * -   subMenus {Array} - an array of submenus with the same signature.
+   * -   className {String} - class name to be used for that menu(in the li)
+   * -   icon {String} - specify an icon for menu.
+   */
   path: PropTypes.string.isRequired,
   label: PropTypes.oneOfType([
     PropTypes.node,

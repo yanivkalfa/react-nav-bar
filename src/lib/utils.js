@@ -22,7 +22,6 @@ export function isMenuObject(componenet) {
  * @param {Object} location
  */
 export function checkActive({ menu, location }) {
-  console.log('menu.active menu, location',menu.active, menu, location);
   switch( typeof menu.active ) {
     case 'boolean':
       return menu.active;

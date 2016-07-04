@@ -1,6 +1,6 @@
 {
   "name": "react-nav-bar",
-  "version": "0.2.33",
+  "version": "0.3.0",
   "description": "Simple yet very coustomizable navigation bar for react",
   "main": "./lib/index.js",
   "scripts": {
