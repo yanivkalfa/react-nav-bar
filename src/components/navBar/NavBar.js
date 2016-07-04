@@ -32,6 +32,7 @@ export default class NavBar extends Component {
   }
 
   renderMenus(menus, parentIndex, parent){
+    menus = _.cloneDeep(menus);
     return  menus.map((menu, index) => {
 
       // if this menu is a simple react component dont change it
