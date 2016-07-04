@@ -11,10 +11,7 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { menus: this.props.menus };
-
-
-    this.prepareMenus({ menus: this.state.menus, location: this.props.location });
+    this.state = { menus: this.prepareMenus({ menus: this.state.menus, location: this.props.location }) };
     console.log('this.props.menus', this.state.menus);
 
   }
@@ -51,8 +48,7 @@ export default class NavBar extends Component {
               opened: false,
               permission: true,
               visible: false,
-              subMenus: [],
-              icon: false
+              subMenus: []
             },
             {
               key: index,
@@ -96,8 +92,7 @@ export default class NavBar extends Component {
             opened: false,
             permission: true,
             visible: false,
-            subMenus: [],
-            icon: false
+            subMenus: []
           },
           {
             key: index,
@@ -119,8 +114,7 @@ export default class NavBar extends Component {
     console.log('propsprops',props);
 
     /*
-    this.setState({ menus: this.props.menus });
-    //this.prepareMenus({ menus: this.state.menus, location: this.props.location });
+    this.setState({ menus: this.prepareMenus({ menus: this.state.menus, location: this.props.location }) });
     //console.log('this.props.menus', this.state.menus);
     */
   }
