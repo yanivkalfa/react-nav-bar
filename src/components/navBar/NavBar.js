@@ -48,31 +48,27 @@ export default class NavBar extends Component {
       if( !menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus) ){
         if( menu.active && parent) parent.active = true;
 
-        menu = _.assign({
-          opened: false,
-          permission: true,
-        }, menu);
-
-        return <Menu
-          key={index}
-          theme={this.props.theme}
-          index={index}
-          toggle={this.props.toggle}
-          parentIndex={parentIndex || 0}
-          openOnHover={this.props.openOnHover}
-          path={menu.path}
-          label={menu.label}
-          active={menu.active}
-          action={menu.action}
-          opened={menu.opened}
-          permission={menu.permission}
-          className={menu.className}
-          icon={menu.icon}
-        />;
+        return createElement(Menu,
+          Object.assign(
+            {
+              opened: false,
+              permission: true,
+              visible: false,
+              subMenus: []
+            },
+            {
+              key: index,
+              theme: this.props.theme,
+              index,
+              toggle: this.props.toggle,
+              parentIndex: ( parentIndex || 0 ),
+              openOnHover: this.props.openOnHover
+            },
+            menu
+          )
+        );
 
       }
-
-
       let children = this.renderMenus(menu.subMenus, index);
 
       /**
@@ -96,32 +92,27 @@ export default class NavBar extends Component {
           }
         });
       }
-
-      menu = _.assign({
-        opened: false,
-        permission: true,
-      }, menu);
-
-      return <Menu
-        key={index}
-        theme={this.props.theme}
-        index={index}
-        spring={ this.props.spring }
-        toggle={this.props.toggle}
-        parentIndex={parentIndex || 0}
-        openOnHover={this.props.openOnHover}
-        path={menu.path}
-        label={menu.label}
-        active={menu.active}
-        action={menu.action}
-        opened={menu.opened}
-        permission={menu.permission}
-        className={menu.className}
-        icon={menu.icon}
-      >
-        {children}
-      </Menu>;
-
+      return createElement(Menu,
+        Object.assign(
+          {
+            opened: false,
+            permission: true,
+            visible: false,
+            subMenus: []
+          },
+          {
+            key: index,
+            theme: this.props.theme,
+            spring: this.props.spring,
+            toggle: this.props.toggle,
+            index,
+            parentIndex: ( parentIndex || 0 ),
+            openOnHover: this.props.openOnHover
+          },
+          menu
+        ),
+        children
+      );
     });
   }
 
@@ -153,47 +144,3 @@ NavBar.propTypes = {
   ]),
   openOnHover: PropTypes.bool
 };
-
-/*
-return createElement(Menu,
-  Object.assign(
-    {
-      opened: false,
-      permission: true,
-      visible: false,
-    },
-    {
-      key: index,
-      theme: this.props.theme,
-      index,
-      toggle: this.props.toggle,
-      parentIndex: ( parentIndex || 0 ),
-      openOnHover: this.props.openOnHover
-    },
-    menu
-  )
-);
-
-
-return createElement(Menu,
-  Object.assign(
-    {
-      opened: false,
-      permission: true,
-      visible: false,
-      subMenus: []
-    },
-    {
-      key: index,
-      theme: this.props.theme,
-      spring: this.props.spring,
-      toggle: this.props.toggle,
-      index,
-      parentIndex: ( parentIndex || 0 ),
-      openOnHover: this.props.openOnHover
-    },
-    menu
-  ),
-  children
-);
-  */
