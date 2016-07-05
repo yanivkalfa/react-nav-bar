@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { Motion, spring } from 'react-motion';
-import { isSpringObj, createClassName } from './../../lib/utils';
+import { createClassName } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
 import { springShape, toggleShape } from './../../lib/menuShapes';
 
@@ -22,52 +22,47 @@ export default class Menu extends Component {
 
   }
 
+  /**
+   * Checks if menu should be visible
+   *
+   * @param {Function|Boolean} permission
+   * @returns {*}
+   */
   isVisible(permission){
     let visible = typeof permission === 'function' ? permission() : permission;
     return visible;
   }
 
+  /**
+   * Toggle this.state.opened true/false
+   *
+   * @param {Boolean} opened
+   */
   toggleMenu(opened){
     this.setState({
       opened: typeof opened!== 'undefined' ? opened : !this.state.opened
     });
   }
 
-  renderContentWithSpring(contentClassName){
-    const { theme } = this.state;
-    let springOpts = this.props.spring;
 
-    return (
-      <Motion style={{x: spring(this.state.opened ? springOpts.opened :  springOpts.closed) }}>
-        {({x}) =>
-          <div className={contentClassName + ( !this.state.opened && springOpts.closed == x ? ' '+ createClassName({ theme, classNames: 'isClosed' })  : ' '+ createClassName({ theme, classNames: 'isOpened' }) )} style={springOpts.style(x)}>
-            <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>
-              {this.props.children}
-            </ul>
-          </div>
-        }
-      </Motion>
-    );
-  }
-
-  renderContentWithoutSpring(contentClassName){
-    const { theme } = this.state;
-
-    return (
-      <div className={contentClassName + ( this.state.opened ? ' '+ createClassName({ theme, classNames: 'isOpened' })  : ' '+ createClassName({ theme, classNames: 'isClosed' }) )}>
-        <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>
-          {this.props.children}
-        </ul>
-      </div>
-    );
-  }
-
+  /**
+   * If onAction was supplied we invoke the action and prevent default.
+   *
+   * @param {Object} event
+   * @param {Function} fn
+   * @returns {*}
+   */
   onMenuClick(event, fn){
     if( !_.isFunction(fn)) return;
     event.preventDefault();
     return fn.call(this,event);
   }
 
+  /**
+   * Prepare all classes and states for render.
+   *
+   * @returns {{displayToggle: boolean, labelClassName: *, contentClassName: *, liClassName: *, chevron: *, active: (string|*)}}
+   */
   prepareForRender(){
     const menu = this.props;
     const { theme } = this.state;
@@ -110,6 +105,52 @@ export default class Menu extends Component {
     return { displayToggle, labelClassName, contentClassName, liClassName, chevron, active };
   }
 
+  /**
+   * Renders menu content with spring motion
+   *
+   * @param {String} contentClassName
+   * @returns {XML}
+   */
+  renderContentWithSpring(contentClassName){
+    const { theme } = this.state;
+    let springOpts = this.props.spring;
+
+    return (
+      <Motion style={{x: spring(this.state.opened ? springOpts.opened :  springOpts.closed) }}>
+        {({x}) =>
+          <div className={contentClassName + ( !this.state.opened && springOpts.closed == x ? ' '+ createClassName({ theme, classNames: 'isClosed' })  : ' '+ createClassName({ theme, classNames: 'isOpened' }) )} style={springOpts.style(x)}>
+            <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>
+              {this.props.children}
+            </ul>
+          </div>
+        }
+      </Motion>
+    );
+  }
+
+  /**
+   * Renders menu content without spring motion
+   *
+   * @param {String} contentClassName
+   * @returns {XML}
+   */
+  renderContentWithoutSpring(contentClassName){
+    const { theme } = this.state;
+
+    return (
+      <div className={contentClassName + ( this.state.opened ? ' '+ createClassName({ theme, classNames: 'isOpened' })  : ' '+ createClassName({ theme, classNames: 'isClosed' }) )}>
+        <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>
+          {this.props.children}
+        </ul>
+      </div>
+    );
+  }
+
+  /**
+   * Render menu icon in-case it exists
+   *
+   * @returns {*}
+   */
   renderMenuIcon(){
     const menu = this.props;
     const { theme } = this.state;
@@ -118,6 +159,11 @@ export default class Menu extends Component {
       : false;
   }
 
+  /**
+   * Render menu label
+   *
+   * @returns {*}
+   */
   renderLabel(){
     const menu = this.props;
     return ( _.isFunction(menu.label) || _.isObject(menu.label))
@@ -125,6 +171,12 @@ export default class Menu extends Component {
       : <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>;
   }
 
+  /**
+   * Render toggle button incase it exists
+   * @param {Boolean} displayToggle
+   * @param {String} chevron
+   * @returns {*}
+   */
   renderToggleButton({ displayToggle, chevron }){
     const { theme } = this.state;
     return (displayToggle)
@@ -153,7 +205,7 @@ export default class Menu extends Component {
             { this.renderToggleButton({ displayToggle, chevron })}
           </div>
           {
-            (isSpringObj(springOpts))
+            (springOpts)
               ? this.renderContentWithSpring(contentClassName)
               : this.renderContentWithoutSpring(contentClassName)
           }
@@ -182,23 +234,21 @@ Menu.propTypes = {
   parentIndex: PropTypes.number,
   openOnHover: PropTypes.bool,
 
-
   /**
-   *
-   * -   path {String} - required  - route to redirect on click.
-   * -   label {String|component} - what will be the menu's text Or component instead.
-   * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
-   *       - If String or Undefined will check if that string is in pathname to determine if is active.
-   *       - If Boolean will do nothing and use the given value.
-   *       - If Function will invoke the function and assign the returned value to active.
-   * -   action {Function} - Will get invoked when a menu item is clicked and prevent default
-   * -   opened {Boolean} - Flag to indicate if submenu is opened or closed.
-   * -   permission {Function|Boolean} - determines whether or not to show this menu - can be use for access control.
-   *       - If Function Will invoke the function and assign the returned value to visible
-   *       - If Boolean will be assigned to visible
-   * -   subMenus {Array} - an array of submenus with the same signature.
-   * -   className {String} - class name to be used for that menu(in the li)
-   * -   icon {String} - specify an icon for menu.
+   * path {String} - required  - route to redirect on click.
+   * label {String|component} - what will be the menu's text Or component instead.
+   * active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
+   *  - If String or Undefined will check if that string is in pathname to determine if is active.
+   *  - If Boolean will do nothing and use the given value.
+   *  - If Function will invoke the function and assign the returned value to active.
+   * action {Function} - Will get invoked when a menu item is clicked and prevent default
+   * opened {Boolean} - Flag to indicate if submenu is opened or closed.
+   * permission {Function|Boolean} - determines whether or not to show this menu - can be use for access control.
+   *  - If Function Will invoke the function and assign the returned value to visible
+   *  - If Boolean will be assigned to visible
+   * subMenus {Array} - an array of submenus with the same signature.
+   * className {String} - class name to be used for that menu(in the li)
+   * icon {String} - specify an icon for menu.
    */
   path: PropTypes.string.isRequired,
   label: PropTypes.oneOfType([
