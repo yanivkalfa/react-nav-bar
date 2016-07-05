@@ -128,7 +128,7 @@ export default class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-  location : PropTypes.object,
+  location : PropTypes.object.isRequired,
   // array of all menus
   theme: PropTypes.string,
   menus: PropTypes.array,

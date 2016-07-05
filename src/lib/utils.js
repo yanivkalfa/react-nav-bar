@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash';
 
-export function isSpringObj(spring) {
-  return spring && _.isEmpty(spring.opened) && _.isEmpty(spring.closed) &&  spring.style && _.isFunction(spring.style)
-}
-
+/**
+ * Create class names by using tame name and classes array or menu
+ *
+ * @param {String} theme
+ * @param {Array|String} classNames
+ * @returns {string|*}
+ */
 export function createClassName({ theme, classNames }) {
   classNames = _.isArray(classNames) ? classNames : [classNames];
   return classNames.filter((className) => !!className ).map((className) => {
@@ -12,8 +15,13 @@ export function createClassName({ theme, classNames }) {
   }).join(' ');
 }
 
-export function isMenuObject(componenet) {
-  return typeof componenet === 'object' && componenet.path
+/**
+ * check if its a normal menu object by checking for path.
+ * @param {Object} component
+ * @returns {boolean|*}
+ */
+export function isMenuObject(component) {
+  return typeof component === 'object' && component.path
 }
 
 /**
