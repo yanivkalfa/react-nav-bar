@@ -1,6 +1,7 @@
 import React, { Component, PropTypes, createClass, createElement } from 'react';
+import _ from 'lodash';
 import { springShape, toggleShape } from './../../lib/menuShapes';
-import { createClassName, isMenuObject } from './../../lib/utils';
+import { createClassName, isMenuObject, checkActive } from './../../lib/utils';
 import { DEFAULT_NAME } from './../../lib/constants';
 import Menu from './../menu/Menu';
 
@@ -9,29 +10,60 @@ import './../../lib/themes';
 export default class NavBar extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      menus: this.prepareMenus({
+        menus: this.props.menus,
+        location: this.props.location
+      })
+    };
+  }
+
+  prepareMenus({ menus, location }) {
+    return menus.map( menu => {
+      const isActive = isMenuObject( menu ) ? checkActive( { menu, location } ) : undefined;
+      const subMenus = !_.isEmpty( menu.subMenus ) ? this.prepareMenus( { menus: menu.subMenus, location } ) : undefined;
+
+      return Object.assign( {}, menu,
+        isActive && { active: isActive },
+        subMenus && { subMenus }
+      );
+    });
   }
 
   renderMenus(menus, parentIndex, parent){
-    return  menus.filter((menu) => menu.visible || !isMenuObject(menu)).map((menu, index) => {
+    return  menus.map((menu, index) => {
 
       // if this menu is a simple react component dont change it
-      if(!isMenuObject(menu)) {
+      if( !isMenuObject(menu) ) {
         const menuComponent = createClass({ render() { return menu } });
         return createElement(menuComponent, { key: index });
       }
 
-      if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
+      if( _.isEmpty( menu.subMenus ) ){
         if( menu.active && parent) parent.active = true;
-        return <Menu
-          menu={menu}
-          key={index}
-          theme={this.props.theme}
-          index={index}
-          toggle={this.props.toggle}
-          parentIndex={parentIndex || 0}
-          openOnHover={this.props.openOnHover}
-        />
+
+        return createElement(Menu,
+          Object.assign(
+            {
+              opened: false,
+              permission: true,
+              visible: false,
+              subMenus: []
+            },
+            {
+              key: index,
+              theme: this.props.theme,
+              index,
+              toggle: this.props.toggle,
+              parentIndex: ( parentIndex || 0 ),
+              openOnHover: this.props.openOnHover
+            },
+            menu
+          )
+        );
       }
+
       let children = this.renderMenus(menu.subMenus, index);
 
       /**
@@ -55,40 +87,55 @@ export default class NavBar extends Component {
           }
         });
       }
-
-      return <Menu
-        menu={menu}
-        key={index}
-        theme={this.props.theme}
-        spring={ this.props.spring }
-        toggle={this.props.toggle}
-        index={index}
-        parentIndex={parentIndex || 0}
-        openOnHover={this.props.openOnHover}
-      >
-        {children}
-      </Menu>;
+      return createElement(Menu,
+        Object.assign(
+          {
+            opened: false,
+            permission: true,
+            visible: false,
+            subMenus: []
+          },
+          {
+            key: index,
+            theme: this.props.theme,
+            spring: this.props.spring,
+            toggle: this.props.toggle,
+            index,
+            parentIndex: ( parentIndex || 0 ),
+            openOnHover: this.props.openOnHover
+          },
+          menu
+        ),
+        children
+      );
     });
   }
 
+  componentWillReceiveProps(props){
+    if ( props.menus ) {
+      this.setState({ menus: this.prepareMenus({ menus: props.menus, location: props.location }) });
+    }
+  }
+
   render() {
-    let { menus, theme } = this.props;
+    let { theme } = this.props;
     theme = theme || DEFAULT_NAME;
-    const menusMarkup = this.renderMenus(menus);
+    const menusMarkup = this.renderMenus(this.state.menus);
     return (
-      <ul className={ createClassName(theme, 'nav-ul') }>{menusMarkup}</ul>
+      <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>{menusMarkup}</ul>
     );
   }
 }
 
 NavBar.propTypes = {
+  location : PropTypes.object,
   // array of all menus
   theme: PropTypes.string,
   menus: PropTypes.array,
   spring: springShape,
   toggle: PropTypes.oneOfType([
     toggleShape,
-    React.PropTypes.bool
+    PropTypes.bool
   ]),
   openOnHover: PropTypes.bool
 };

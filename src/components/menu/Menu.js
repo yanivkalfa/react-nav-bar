@@ -10,14 +10,23 @@ import { springShape, toggleShape } from './../../lib/menuShapes';
 export default class Menu extends Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign({
+
+    this.state = {
       theme: this.props.theme || DEFAULT_NAME,
       opened: this.props.opened,
       openOnHover: typeof this.props.openOnHover === 'boolean'
         ? this.props.openOnHover
-        : true
-    });
+        : true,
+      visible: this.isVisible(this.props.permission) || true
+    };
+
   }
+
+  isVisible(permission){
+    let visible = typeof permission === 'function' ? permission() : permission;
+    return visible;
+  }
+
   toggleMenu(opened){
     this.setState({
       opened: typeof opened!== 'undefined' ? opened : !this.state.opened
@@ -31,8 +40,8 @@ export default class Menu extends Component {
     return (
       <Motion style={{x: spring(this.state.opened ? springOpts.opened :  springOpts.closed) }}>
         {({x}) =>
-          <div className={contentClassName + ( !this.state.opened && springOpts.closed == x ? ' '+ createClassName(theme, 'isClosed') : ' '+ createClassName(theme, 'isOpened'))} style={springOpts.style(x)}>
-            <ul className={ createClassName(theme, 'nav-ul') }>
+          <div className={contentClassName + ( !this.state.opened && springOpts.closed == x ? ' '+ createClassName({ theme, classNames: 'isClosed' })  : ' '+ createClassName({ theme, classNames: 'isOpened' }) )} style={springOpts.style(x)}>
+            <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>
               {this.props.children}
             </ul>
           </div>
@@ -45,8 +54,8 @@ export default class Menu extends Component {
     const { theme } = this.state;
 
     return (
-      <div className={contentClassName + ( this.state.opened ? ' '+ createClassName(theme, 'isOpened') : ' '+ createClassName(theme, 'isClosed'))}>
-        <ul className={ createClassName(theme, 'nav-ul') }>
+      <div className={contentClassName + ( this.state.opened ? ' '+ createClassName({ theme, classNames: 'isOpened' })  : ' '+ createClassName({ theme, classNames: 'isClosed' }) )}>
+        <ul className={ createClassName({ theme, classNames: 'nav-ul' })  }>
           {this.props.children}
         </ul>
       </div>
@@ -60,7 +69,7 @@ export default class Menu extends Component {
   }
 
   prepareForRender(){
-    const { menu } = this.props;
+    const menu = this.props;
     const { theme } = this.state;
 
     let chevron, liClassName, labelClassName, contentClassName, displayToggle = true,
@@ -83,16 +92,16 @@ export default class Menu extends Component {
 
     // if has parent index - this is a child menu
     if (parentIndex) {
-      labelClassName = createClassName(theme, [ 'nav-label', 'label-child', active ]);
-      contentClassName = createClassName(theme, [ 'nav-content', 'content-child']);
-      liClassName = createClassName(theme, [ 'nav-li', 'child-li' ]);
+      labelClassName = createClassName({ theme, classNames: [ 'nav-label', 'label-child', active ] }) ;
+      contentClassName = createClassName({ theme, classNames: [ 'nav-content', 'content-child'] }) ;
+      liClassName = createClassName({ theme, classNames: [ 'nav-li', 'child-li' ] }) ;
       chevron = this.state.opened
         ? toggleChild.opened || toggleDefault || 'chevron-right'
         : toggleChild.closed || toggleDefault || 'chevron-left';
     } else {
-      labelClassName = createClassName(theme, [ 'nav-label', 'label-parent', active ]);
-      contentClassName = createClassName(theme, [ 'nav-content' ]);
-      liClassName = createClassName(theme, [ 'nav-li', 'parent-li' ]);
+      labelClassName = createClassName({ theme, classNames: [ 'nav-label', 'label-parent', active ] }) ;
+      contentClassName = createClassName({ theme, classNames: [ 'nav-content' ] }) ;
+      liClassName = createClassName({ theme, classNames: [ 'nav-li', 'parent-li' ] }) ;
       chevron = this.state.opened
         ? toggleParent.opened || toggleDefault || 'chevron-down'
         : toggleParent.closed || toggleDefault || 'chevron-up';
@@ -102,15 +111,15 @@ export default class Menu extends Component {
   }
 
   renderMenuIcon(){
-    const { menu } = this.props;
+    const menu = this.props;
     const { theme } = this.state;
     return (menu.icon)
-      ? <FontAwesome className={ createClassName(theme, 'menu-icon') } name={menu.icon} />
+      ? <FontAwesome className={ createClassName({ theme, classNames: 'menu-icon' })  } name={menu.icon} />
       : false;
   }
 
   renderLabel(){
-    const { menu } = this.props;
+    const menu = this.props;
     return ( _.isFunction(menu.label) || _.isObject(menu.label))
       ? menu.label
       : <Link to={menu.path} onClick={(e) =>{ this.onMenuClick(e, menu.action) }}>{menu.label}</Link>;
@@ -119,12 +128,15 @@ export default class Menu extends Component {
   renderToggleButton({ displayToggle, chevron }){
     const { theme } = this.state;
     return (displayToggle)
-      ? <FontAwesome className={ createClassName(theme, 'toggle-button') } name={chevron} onClick={ ()=>{ this.toggleMenu() } }/>
+      ? <FontAwesome className={ createClassName({ theme, classNames: 'toggle-button' })  } name={chevron} onClick={ ()=>{ this.toggleMenu() } }/>
       : false;
   }
 
   render() {
-    const { menu } = this.props;
+    const menu = this.props;
+
+    if ( !this.state.visible ) return false;
+
     const { theme, openOnHover } = this.state;
     const { displayToggle, labelClassName, contentClassName, liClassName, chevron, active } = this.prepareForRender();
 
@@ -132,7 +144,7 @@ export default class Menu extends Component {
       let springOpts = this.props.spring;
 
       return (
-        <li className={liClassName + ' '+ menu.className + ( this.state.opened ? ' '+ createClassName(theme, 'isOpened') : '') }
+        <li className={liClassName + ' '+ menu.className + ( this.state.opened ? ' '+ createClassName({ theme, classNames: 'isOpened' })  : '') }
             onMouseEnter={ ()=> { if ( openOnHover )  this.toggleMenu(true) } }
             onMouseLeave={ ()=> { if ( openOnHover )  this.toggleMenu(false) } }>
           <div className={labelClassName}>
@@ -151,7 +163,7 @@ export default class Menu extends Component {
 
     return (
       <li className={liClassName + ' '+ menu.className}>
-        <div className={createClassName(theme, [ 'nav-label', active ])}>
+        <div className={createClassName({ theme, classNames: [ 'nav-label', active ] }) }>
           { this.renderMenuIcon() }
           { this.renderLabel() }
         </div>
@@ -161,7 +173,6 @@ export default class Menu extends Component {
 }
 
 Menu.propTypes = {
-  menu: PropTypes.object,
   spring: springShape,
   toggle: PropTypes.oneOfType([
     toggleShape,
@@ -169,5 +180,43 @@ Menu.propTypes = {
   ]),
   index: PropTypes.number,
   parentIndex: PropTypes.number,
-  openOnHover: PropTypes.bool
+  openOnHover: PropTypes.bool,
+
+
+  /**
+   *
+   * -   path {String} - required  - route to redirect on click.
+   * -   label {String|component} - what will be the menu's text Or component instead.
+   * -   active {Boolean|Function|Undefined|String} - Determines if the menu is active currently.
+   *       - If String or Undefined will check if that string is in pathname to determine if is active.
+   *       - If Boolean will do nothing and use the given value.
+   *       - If Function will invoke the function and assign the returned value to active.
+   * -   action {Function} - Will get invoked when a menu item is clicked and prevent default
+   * -   opened {Boolean} - Flag to indicate if submenu is opened or closed.
+   * -   permission {Function|Boolean} - determines whether or not to show this menu - can be use for access control.
+   *       - If Function Will invoke the function and assign the returned value to visible
+   *       - If Boolean will be assigned to visible
+   * -   subMenus {Array} - an array of submenus with the same signature.
+   * -   className {String} - class name to be used for that menu(in the li)
+   * -   icon {String} - specify an icon for menu.
+   */
+  path: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.string
+  ]),
+  active: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func,
+    PropTypes.string
+  ]),
+  action: PropTypes.func,
+  opened: PropTypes.bool,
+  permission: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func
+  ]),
+  subMenus: PropTypes.array,
+  className: PropTypes.string,
+  icon: PropTypes.string
 };
