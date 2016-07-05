@@ -20,19 +20,14 @@ export default class NavBar extends Component {
   }
 
   prepareMenus({ menus, location }) {
-    menus = _.cloneDeep(menus);
-    return menus.map((menu)=> {
+    return menus.map( menu => {
+      const isActive = isMenuObject( menu ) ? checkActive( { menu, location } ) : undefined;
+      const subMenus = !_.isEmpty( menu.subMenus ) ? this.prepareMenus( { menus: menu.subMenus, location } ) : undefined;
 
-      if( !isMenuObject(menu) ) return menu;
-
-      if(!menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus)){
-        menu.active = checkActive({ menu, location });
-        return menu;
-      }
-
-      menu.subMenus = this.prepareMenus({ menus: menu.subMenus, location });
-      menu.active = checkActive({ menu, location });
-      return menu;
+      return Object.assign( {}, menu,
+        isActive && { active: isActive },
+        subMenus && { subMenus }
+      );
     });
   }
 
@@ -45,7 +40,7 @@ export default class NavBar extends Component {
         return createElement(menuComponent, { key: index });
       }
 
-      if( !menu.subMenus || !menu.subMenus.length || !_.isArray(menu.subMenus) ){
+      if( _.isEmpty( menu.subMenus ) ){
         if( menu.active && parent) parent.active = true;
 
         return createElement(Menu,
@@ -67,8 +62,8 @@ export default class NavBar extends Component {
             menu
           )
         );
-
       }
+
       let children = this.renderMenus(menu.subMenus, index);
 
       /**
