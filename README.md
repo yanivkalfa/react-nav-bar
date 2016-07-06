@@ -25,8 +25,7 @@ var NavBar = reactNavBar.NavBar;
 var Menu = reactNavBar.Menu;
 
 // Define your menu:
-// Menu can be any valid component form within react
-// if they are plan objects they need to be instantiated
+// Menu can be any valid component form within react or objects with the listed properties.
 var menus = [
   { path:'menu1', label:'Menu 1', icon:'bell'},
   <div>jsx element</div>,
@@ -42,26 +41,9 @@ var menus = [
   ]}
 ]
 
-// You can instantiate the menus your self
-var location = react-router-location(this.props.location) // react-router location
-var menus = [
-  new Menu({ path:'menu1', label:'Menu 1', icon:'bell'}, location),
-  <div>jsx element</div>,
-  new Menu({ path:'menu3', label:'Menu 3', icon:'bars', subMenus: [
-    new Menu({ path:'menu4', label:'Menu 4'}, location),
-    new Menu({ path:'menu5', label:'Menu 5', subMenus: [
-      new Menu({ path:'menu6', label:'Menu 6'}, location),
-      new Menu({ path:'menu7', label:'Menu 7'}, location),
-      React.createClass({ render: function() { return <li>can do that TOO</li>; } }),
-      new Menu({ path:'menu9', label:'Menu 9'}, location)
-    ]}, location),
-    new Menu({ path:'menu10', label:<div> You can do that too</div>, icon:'bars'}, location)
-  ]}, location)
-]
-
 // Then use NavBar to place the menus where you want.
 <div className="menu">
-  <NavBar menus={menus} theme={'hoverLakeBright'} />
+  <NavBar menus={menus} theme={'hoverLakeBright'} location={this.props.location} />
 </div>
 ```
 
