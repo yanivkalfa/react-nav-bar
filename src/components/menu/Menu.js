@@ -184,6 +184,11 @@ export default class Menu extends Component {
       : false;
   }
 
+  /**
+   * reacts render
+   *
+   * @returns {*}
+   */
   render() {
     const menu = this.props;
 
