@@ -126,6 +126,11 @@ export default class NavBar extends Component {
     });
   }
 
+  /**
+   *
+   * Updating component in - case on menu change
+   * @param props
+   */
   componentWillReceiveProps(props){
     if ( props.menus ) {
       this.setState({ menus: this.prepareMenus({ menus: props.menus, location: props.location }) });
