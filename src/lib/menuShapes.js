@@ -1,6 +1,10 @@
 import { PropTypes } from 'react'
 
-// spring object spring={{ opened:100, closed:0, style: function(x) { return { height: `${x}%`} } }}
+/**
+ * react shape object - used to animate menu open/close
+ *
+ * spring object spring={{ opened:100, closed:0, style: function(x) { return { height: `${x}%`} } }}
+ */
 export const springShape =  PropTypes.shape({
   style: PropTypes.func.isRequired,
   opened: PropTypes.number.isRequired,
