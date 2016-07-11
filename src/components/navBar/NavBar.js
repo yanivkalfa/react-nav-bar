@@ -19,6 +19,13 @@ export default class NavBar extends Component {
     };
   }
 
+  /**
+   * checking which menu is active
+   *
+   * @param {Array} menus
+   * @param {Object} location
+   * @returns {*}
+   */
   prepareMenus({ menus, location }) {
     return menus.map( menu => {
       const isActive = isMenuObject( menu ) ? checkActive( { menu, location } ) : undefined;
