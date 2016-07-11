@@ -1,7 +1,7 @@
 import { PropTypes } from 'react'
 
 /**
- * react shape object - used to animate menu open/close
+ * React shape object - used to animate menu open/close
  *
  * spring object spring={{ opened:100, closed:0, style: function(x) { return { height: `${x}%`} } }}
  */
@@ -11,19 +11,25 @@ export const springShape =  PropTypes.shape({
   closed: PropTypes.number.isRequired
 });
 
-/*
-var toggle = {
-  default:'pied-piper',
-  parent: {
-    opened: 'bars',
-    closed: 'pied-piper'
-  },
-  child: {
-    opened: 'bus',
-    closed: 'coffee'
-  },
-};
-*/
+
+/**
+ * React shape object - used to control toggel button looks and visibility
+ *
+ *
+ *
+  var toggle = {
+    default:'pied-piper',
+    parent: {
+      opened: 'bars',
+      closed: 'pied-piper'
+    },
+    child: {
+      opened: 'bus',
+      closed: 'coffee'
+    },
+  };
+ */
+
 export const toggleShape =  PropTypes.shape({
   display: PropTypes.bool,
   default: PropTypes.string,
