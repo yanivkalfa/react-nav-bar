@@ -29,7 +29,6 @@ export const springShape =  PropTypes.shape({
     },
   };
  */
-
 export const toggleShape =  PropTypes.shape({
   display: PropTypes.bool,
   default: PropTypes.string,

@@ -1,3 +1,6 @@
+/**
+ * Including all the themes.
+ */
 import './../../themes/default.css';
 import './../../themes/hoverLakeDark.css';
 import './../../themes/hoverLakeDarkRound.css';
