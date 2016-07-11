@@ -93,7 +93,6 @@ NavBar and Menu have different options
  * className {String} - class name to be used for that menu(in the li)
  * icon {String} - specify an icon for menu.
 
-
 ##Themes:
 Using custom theme is very simple:
 
