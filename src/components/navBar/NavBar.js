@@ -20,7 +20,7 @@ export default class NavBar extends Component {
   }
 
   /**
-   * checking which menu is active
+   * recursivly check if menus are active.
    *
    * @param {Array} menus
    * @param {Object} location
@@ -38,6 +38,14 @@ export default class NavBar extends Component {
     });
   }
 
+  /**
+   * recurisvly renders the menus.
+   *
+   * @param {Array} menus
+   * @param {Number} parentIndex
+   * @param {Object} parent
+   * @returns {*}
+   */
   renderMenus(menus, parentIndex, parent){
     return  menus.map((menu, index) => {
 
