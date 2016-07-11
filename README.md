@@ -102,10 +102,3 @@ Using custom theme is very simple:
  * include the theme file somewhere in your site
 
 And your done.
-
-
-
-
-
-
-
