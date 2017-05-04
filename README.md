@@ -3,21 +3,21 @@ React Navigation Bar
 
 Can be used to create customizable navigation bar for your react project.
 
-**Examples:
+## Examples:
 
-***Full size:
+### Full size:
 ![full size](https://raw.githubusercontent.com/yanivkalfa/react-nav-bar/master/assets/full-size-menu.png)
 
-***Mobile size
+### Mobile size
 ![Mobile size](https://raw.githubusercontent.com/yanivkalfa/react-nav-bar/master/assets/mobile-size-menu.png)
 
-**Installation
+## Installation
 
 ```javascript
 npm install --save react-nav-bar
 ```
 
-***Usage and options:
+### Usage and options:
 
 ```javascript
 var reactNavBar = require('react-nav-bar');
@@ -47,10 +47,10 @@ var menus = [
 </div>
 ```
 
-**Options
+## Options
 NavBar and Menu have different options
 
-***NavBar
+### NavBar
 
  * location {Object} - react-router location object.
  * menus {Array} - required  - An array of instantiated menus  .
@@ -76,7 +76,7 @@ NavBar and Menu have different options
     };
  ```
 
-***Menu
+### Menu
 
  * path {String} - required  - route to redirect on click.
  * label {String|component} - what will be the menu's text Or component instead.
@@ -93,7 +93,7 @@ NavBar and Menu have different options
  * className {String} - class name to be used for that menu(in the li)
  * icon {String} - specify an icon for menu.
 
-**Themes:
+## Themes:
 Using custom theme is very simple:
 
  * copy one of the included themes
